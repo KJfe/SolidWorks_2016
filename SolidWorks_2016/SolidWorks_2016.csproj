@@ -68,8 +68,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="View\PlaginWindowView.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -80,10 +80,11 @@
     <Compile Include="Model\IBuildFigureModel.cs" />
     <Compile Include="Model\NewFileSW_Model.cs" />
     <Compile Include="Model\EndHeadFigureModel.cs" />
+    <Compile Include="Model\PeopleModel.cs" />
     <Compile Include="Model\RoundingModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\PlaginWindowView.xaml.cs">
       <DependentUpon>PlaginWindowView.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +114,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

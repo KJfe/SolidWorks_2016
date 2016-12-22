@@ -67,7 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="View\PlaginWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -81,8 +81,8 @@
     <Compile Include="Model\NewFileSW_Model.cs" />
     <Compile Include="Model\EndHeadFigureModel.cs" />
     <Compile Include="Model\RoundingModel.cs" />
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="View\PlaginWindowView.xaml.cs">
+      <DependentUpon>PlaginWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -79,7 +79,7 @@
     <Compile Include="Model\ExtrusionModel.cs" />
     <Compile Include="Model\IBuildFigureModel.cs" />
     <Compile Include="Model\NewFileSW_Model.cs" />
-    <Compile Include="Model\PeopleModel.cs" />
+    <Compile Include="Model\EndHeadFigureModel.cs" />
     <Compile Include="Model\RoundingModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

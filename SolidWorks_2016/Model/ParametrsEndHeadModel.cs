@@ -47,11 +47,11 @@ namespace SolidWorks_2016.Model
                 }
                 catch (CellOutOfRangeException cellOutOfRangeExxeption)
                 {
-                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK/*, MessageBoxIcon.Asterisk*/);
+                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 catch (CellFormatException cellFormatError)
                 {
-                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK/*, MessageBoxIcon.Asterisk*/);
+                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
 
             }
@@ -74,11 +74,11 @@ namespace SolidWorks_2016.Model
                 }
                 catch (CellOutOfRangeException cellOutOfRangeExxeption)
                 {
-                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 catch (CellFormatException cellFormatError)
                 {
-                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
 
             }
@@ -95,7 +95,21 @@ namespace SolidWorks_2016.Model
             }
             set
             {
-                _heightFirstCylinder = InspectionParametrModel.Parametr(value, "Высота первого цилиндра");
+                try
+                {
+                    _heightFirstCylinder = InspectionParametrModel.Parametr(value, "Высота первого цилиндра");
+                }
+                catch (CellOutOfRangeException cellOutOfRangeExxeption)
+                {
+                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+                catch (CellFormatException cellFormatError)
+                {
+                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+
+                
+
             }
         }
         /// <summary>
@@ -110,7 +124,20 @@ namespace SolidWorks_2016.Model
             }
             set
             {
-                _heightSecondCylinder = InspectionParametrModel.Parametr(value, "Высота второго цилиндра");
+                try
+                {
+
+                    _heightSecondCylinder = InspectionParametrModel.Parametr(value, "Высота второго цилиндра");
+                }
+                catch (CellOutOfRangeException cellOutOfRangeExxeption)
+                {
+                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+                catch (CellFormatException cellFormatError)
+                {
+                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+
             }
         }
         /// <summary>
@@ -131,11 +158,11 @@ namespace SolidWorks_2016.Model
                 }
                 catch (CellOutOfRangeException cellOutOfRangeExxeption)
                 {
-                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 catch (CellFormatException cellFormatError)
                 {
-                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
 
             }
@@ -150,11 +177,11 @@ namespace SolidWorks_2016.Model
             }
             catch (CellOutOfRangeException cellOutOfRangeExxeption)
             {
-                MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButtons.OK, MessageBoxImage.Asterisk);
             }
             catch (CellFormatException cellFormatError)
             {
-                MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButtons.OK, MessageBoxImage.Asterisk);
             }
 
         }*/

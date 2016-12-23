@@ -21,7 +21,6 @@ namespace SolidWorks_2016
             {
                 DataContext = new MainViewModel()
             };
-
             mw.Show();
         }
     }

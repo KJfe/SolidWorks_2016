@@ -4,52 +4,108 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="MainWindow"
     Width="400"
-    Height="170">
+    Height="300">
     <Grid>
         <TextBlock
-            Margin="12,12,0,0"
+            Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="First name" />
+            Text="First Radius" />
         <TextBlock
-            Margin="12,52,0,0"
+            Margin="10,31,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="Last name" />
+            Text="First height" />
+        <TextBlock
+            Margin="10,52,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Second Radius" />
+        <TextBlock
+            Margin="10,73,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Second height" />
+        <TextBlock
+            Margin="12,94,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Вырез deep" />
 
         <TextBox
             Width="120"
-            Margin="90,9,0,0"
+            Margin="102,8,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="{Binding Path=People.FirstName, Mode=TwoWay}" />
+            Text="{Binding Path=ParametrsEndHead.RadiusFirstCylinder, Mode=TwoWay}" />
         <TextBox
             Width="120"
-            Margin="90,49,0,0"
+            Margin="102,27,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="{Binding Path=People.LastName, Mode=TwoWay}" />
+            Text="{Binding Path=ParametrsEndHead.RadiusSecondCylinder, Mode=TwoWay}" />
 
         <TextBox
             Width="120"
-            Margin="246,9,0,0"
+            Margin="102,50,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding Path=People.FirstName, Mode=TwoWay}" />
+            Text="{Binding Path=ParametrsEndHead.HeightFirstCylinder, Mode=TwoWay}" />
         <TextBox
             Width="120"
-            Margin="246,49,0,0"
+            Margin="102,73,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding Path=ParametrsEndHead.HeightSecondCylinder, Mode=TwoWay}" />
+
+        <TextBox
+            Width="120"
+            Margin="227,8,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             IsReadOnly="True"
-            Text="{Binding Path=People.LastName, Mode=TwoWay}" />
+            Text="{Binding Path=ParametrsEndHead.RadiusFirstCylinder, Mode=TwoWay}" />
+        <TextBox
+            Width="120"
+            Margin="227,27,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            IsReadOnly="True"
+            Text="{Binding Path=ParametrsEndHead.RadiusSecondCylinder, Mode=TwoWay}" />
+
+        <TextBox
+            Width="120"
+            Margin="227,50,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            IsReadOnly="True"
+            Text="{Binding Path=ParametrsEndHead.HeightFirstCylinder, Mode=TwoWay}" />
+        <TextBox
+            Width="120"
+            Margin="227,73,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            IsReadOnly="True"
+            Text="{Binding Path=ParametrsEndHead.HeightSecondCylinder, Mode=TwoWay}" />
 
         <Button
             Width="75"
-            Margin="291,97,0,0"
+            Margin="307,239,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Click me" />
+        <TextBox
+            Width="120"
+            Margin="102,96,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding Path=ParametrsEndHead.DeepExtrusionFirstCylinder, Mode=TwoWay}" />
+        <TextBox
+            Width="120"
+            Margin="227,96,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            IsReadOnly="True"
+            Text="{Binding Path=ParametrsEndHead.DeepExtrusionFirstCylinder, Mode=TwoWay}" />
     </Grid>
 </Window>

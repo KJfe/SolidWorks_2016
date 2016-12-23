@@ -75,14 +75,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\CellFormatException.cs" />
+    <Compile Include="Model\CellOutOfRangeException.cs" />
     <Compile Include="Model\CylinderModel.cs" />
     <Compile Include="Model\ExtrusionModel.cs" />
     <Compile Include="Model\IBuildFigureModel.cs" />
+    <Compile Include="Model\InspectionParametrModel.cs" />
     <Compile Include="Model\NewFileSW_Model.cs" />
     <Compile Include="Model\EndHeadFigureModel.cs" />
+    <Compile Include="Model\ParametrsEndHeadModel.cs" />
     <Compile Include="Model\PeopleModel.cs" />
     <Compile Include="Model\RoundingModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Command.cs" />
     <Compile Include="View\PlaginWindowView.xaml.cs">
       <DependentUpon>PlaginWindowView.xaml</DependentUpon>
     </Compile>

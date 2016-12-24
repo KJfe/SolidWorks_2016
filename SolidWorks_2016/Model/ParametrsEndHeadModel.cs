@@ -209,25 +209,6 @@ namespace SolidWorks_2016.Model
             }
         }
 
-       /* 
-        private void ExceptionParametrs()
-        {
-            try
-            {
-                RadiusFirstCylinder();
-                DeepExtrusionFirstCylinder{};
-            }
-            catch (CellOutOfRangeException cellOutOfRangeExxeption)
-            {
-                MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            }
-            catch (CellFormatException cellFormatError)
-            {
-                MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            }
-        }
-        */
-
         /*
         public event PropertyChangedEventHandler PropertyChanged;
 

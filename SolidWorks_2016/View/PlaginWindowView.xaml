@@ -12,12 +12,12 @@
             VerticalAlignment="Top"
             Text="First Radius" />
         <TextBlock
-            Margin="10,31,0,0"
+            Margin="8,50,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="First height" />
         <TextBlock
-            Margin="10,52,0,0"
+            Margin="8,29,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="Second Radius" />
@@ -93,14 +93,14 @@
             Margin="272,239,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Command="{Binding ClickCommand}"
+            Command="{Binding ClickCommandBuilder}"
             Content="Build EndHead" />
         <Button
             Width="110"
-            Margin="10,239,0,0"
+            Margin="10,177,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Command="{Binding ClickCommand}"
+            Command="{Binding ClickCommandOpenSolidWorks}"
             Content="Open SolidWorks" />
         <TextBox
             Width="120"

@@ -19,6 +19,8 @@ namespace SolidWorks_2016.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            ClickCommandOpenSolidWorks = new Command(arg => ClickOpenSolidWorks());
+            
             ParametrsEndHead = new ParametrsEndHeadModel
             {
                 RadiusFirstCylinder = "0",
@@ -26,11 +28,10 @@ namespace SolidWorks_2016.ViewModel
                 HeightFirstCylinder = "0",
                 HeightSecondCylinder = "0",
                 DeepExtrusionFirstCylinder = "0",
-                WallThickness="0"
+                WallThickness="3"
             };
-            ClickCommandOpenSolidWorks = new Command(arg => ClickOpenSolidWorks());
-            var BuildEndHead = new ParametrsEndHeadModel();
-            ClickCommandBuilder = new Command(arg => BuildEndHead.BuildEndHead(_SwApp));
+            //var BuildEndHead = new ParametrsEndHeadModel();
+            ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(_SwApp));
         }
 
         public ParametrsEndHeadModel ParametrsEndHead { get; set; }
@@ -41,14 +42,13 @@ namespace SolidWorks_2016.ViewModel
         public ICommand ClickCommandBuilder { get; set; }
         private void ClickBuildEndHead()
         {
-            //MessageBox.Show("This is click command.");
-            
+            MessageBox.Show("This is click command.");
         }
 
         /// <summary>
         /// Открытие SolidWorks v2016
         /// </summary>
-        private ICommand ClickCommandOpenSolidWorks { get; set; }
+        public ICommand ClickCommandOpenSolidWorks { get; set; }
         public void ClickOpenSolidWorks()
         {
             // убиваем солид если запущен
@@ -58,14 +58,11 @@ namespace SolidWorks_2016.ViewModel
                     process.CloseMainWindow();
                     process.Kill();
                 }
-
             // запуск солид
             object processSW = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application"));
             _SwApp = (SldWorks)processSW;
             _SwApp.Visible = true;
-            //BOpenSW = true;
-            //bCreate = true;
-
         }
+
     }
 }

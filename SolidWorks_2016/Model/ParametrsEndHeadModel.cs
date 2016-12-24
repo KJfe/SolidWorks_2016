@@ -10,29 +10,33 @@ using SolidWorks.Interop.sldworks;
 
 namespace SolidWorks_2016.Model
 {
-    class ParametrsEndHeadModel//: INotifyPropertyChanged
+    public class ParametrsEndHeadModel//: INotifyPropertyChanged
     {
         public void BuildEndHead(SldWorks SwApp)
         {
+            
             if ((_radiusFirstCylinder >= _radiusSecondCylinder) && 
                 (_wallThickness < _heightFirstCylinder) &&
                 (_wallThickness < _heightSecondCylinder) &&
                 (_heightFirstCylinder>3))
             {
+                MessageBox.Show("This is click command.");
                 double FerstRadius;
                 double SecondRadius;
                 double HeightSecondCylinder;
                 double DeepExtrusion;
+                double SecondRadiusExtrusion;
                 FerstRadius = _radiusFirstCylinder + _wallThickness;
-                SecondRadius = (_radiusSecondCylinder * Math.Sqrt(2)) / 2 + _wallThickness;
+                SecondRadius = (_radiusSecondCylinder * Math.Sqrt(2)) / 2;
+                SecondRadiusExtrusion  = SecondRadius + _wallThickness;           
                 HeightSecondCylinder = _heightFirstCylinder + _heightSecondCylinder;
                 DeepExtrusion = _heightFirstCylinder - 3;
                 EndHeadFigureModel SensingHead = new EndHeadFigureModel(SwApp); 
                 SensingHead.BuildNewDocSW();
-                SensingHead.BuildNewCylinder(FerstRadius, _heightFirstCylinder, "Спереди", "PLANE", 0, 0, 0, false);
-                SensingHead.BuildNewCylinder(SecondRadius, HeightSecondCylinder, "Спереди", "PLANE", 0, 0, 0, false);
-                SensingHead.BuildExtrusion(true, _radiusFirstCylinder, 6, DeepExtrusion);
-                SensingHead.BuildExtrusion(true, _radiusSecondCylinder, 4, HeightSecondCylinder);
+                SensingHead.BuildNewCylinder(FerstRadius/1000, _heightFirstCylinder/1000, "Спереди", "PLANE", 0, 0, 0, false);
+                SensingHead.BuildNewCylinder(SecondRadiusExtrusion / 1000, HeightSecondCylinder / 1000, "Спереди", "PLANE", 0, 0, 0, false);
+                SensingHead.BuildExtrusion(true, _radiusFirstCylinder / 1000, 6, DeepExtrusion / 1000);
+                SensingHead.BuildExtrusion(true, SecondRadius / 1000, 4, HeightSecondCylinder / 1000);
             }
         }
         /// <summary>

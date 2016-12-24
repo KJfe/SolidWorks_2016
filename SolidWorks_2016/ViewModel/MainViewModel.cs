@@ -8,19 +8,32 @@ using System.Windows;
 using System.Windows.Input;
 using SolidWorks.Interop.sldworks;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace SolidWorks_2016.ViewModel
 {
-    class MainViewModel
+    class MainViewModel: INotifyPropertyChanged
     {
         private SldWorks _SwApp;
         /// <summary>
-        /// Constructor.
+        /// Метод проверяющий изменилось ли свойство
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        /// <summary>
+        /// Реализвация конструктора
         /// </summary>
         public MainViewModel()
         {
             ClickCommandOpenSolidWorks = new Command(arg => ClickOpenSolidWorks());
-            
+            ClickCommandCloseSolidWorks = new Command(arg => ClickCloseSolidWorks());
             ParametrsEndHead = new ParametrsEndHeadModel
             {
                 RadiusFirstCylinder = "0",
@@ -30,7 +43,6 @@ namespace SolidWorks_2016.ViewModel
                 DeepExtrusionFirstCylinder = "0",
                 WallThickness="3"
             };
-            //var BuildEndHead = new ParametrsEndHeadModel();
             ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(_SwApp));
         }
 
@@ -40,10 +52,6 @@ namespace SolidWorks_2016.ViewModel
         /// Создание торцевой головки
         /// </summary>
         public ICommand ClickCommandBuilder { get; set; }
-        private void ClickBuildEndHead()
-        {
-            MessageBox.Show("This is click command.");
-        }
 
         /// <summary>
         /// Открытие SolidWorks v2016
@@ -63,6 +71,32 @@ namespace SolidWorks_2016.ViewModel
             _SwApp = (SldWorks)processSW;
             _SwApp.Visible = true;
         }
+        /// <summary>
+        /// Закрытие SolidWorks
+        /// </summary>
+        public ICommand ClickCommandCloseSolidWorks { get; set; }
+        public void ClickCloseSolidWorks()
+        {
+            _SwApp.ExitApp();
+        }
+        /// <summary>
+        /// Открыт ли солид воркс
+        /// </summary>
+        public ICommand IsEnabledCommandOpenSW { get; set; }
+        private bool _isEnabledOpenSW;
+        public bool IsEnabledOpenSW
+        {
+            get
+            {
+                return _isEnabledOpenSW;
+            }
+            set
+            {
+                _isEnabledOpenSW = value;
+                OnPropertyChanged("IsEnabledOpenSW");
+            }
+        }
+
 
     }
 }

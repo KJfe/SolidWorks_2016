@@ -16,9 +16,9 @@
         }
 
         // SldWorks SwApp; // отвечает за получение обекта в солиде
-         IModelDoc2 swModel; // создаем  (деталь чертеж и т.д.) 
+        private IModelDoc2 swModel; // создаем  (деталь чертеж и т.д.) 
 
-        public  void BuildNewDocSW()
+        public void BuildNewDocSW()
         {
             var newdoc = new NewFileSW_Model(_SwApp, swModel);
             swModel = newdoc.Build;

@@ -5,23 +5,65 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using BuilderFigure.Model;
+using SolidWorks.Interop.sldworks;
 
 namespace SolidWorks_2016.Model
 {
-    class ParametrsEndHeadModel: INotifyPropertyChanged
+    class ParametrsEndHeadModel//: INotifyPropertyChanged
     {
-        /*public bool BuildEndHead()
+        public void BuildEndHead(SldWorks SwApp)
         {
-            if ()
-                return true;
-        }*/
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
+            if ((_radiusFirstCylinder >= _radiusSecondCylinder) && 
+                (_wallThickness < _heightFirstCylinder) &&
+                (_wallThickness < _heightSecondCylinder) &&
+                (_heightFirstCylinder>3))
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                double FerstRadius;
+                double SecondRadius;
+                double HeightSecondCylinder;
+                double DeepExtrusion;
+                FerstRadius = _radiusFirstCylinder + _wallThickness;
+                SecondRadius = (_radiusSecondCylinder * Math.Sqrt(2)) / 2 + _wallThickness;
+                HeightSecondCylinder = _heightFirstCylinder + _heightSecondCylinder;
+                DeepExtrusion = _heightFirstCylinder - 3;
+                EndHeadFigureModel SensingHead = new EndHeadFigureModel(SwApp); 
+                SensingHead.BuildNewDocSW();
+                SensingHead.BuildNewCylinder(FerstRadius, _heightFirstCylinder, "Спереди", "PLANE", 0, 0, 0, false);
+                SensingHead.BuildNewCylinder(SecondRadius, HeightSecondCylinder, "Спереди", "PLANE", 0, 0, 0, false);
+                SensingHead.BuildExtrusion(true, _radiusFirstCylinder, 6, DeepExtrusion);
+                SensingHead.BuildExtrusion(true, _radiusSecondCylinder, 4, HeightSecondCylinder);
+            }
+        }
+        /// <summary>
+        /// Толщена стенок
+        /// </summary>
+        private double _wallThickness;
+        public string WallThickness
+        {
+            get
+            {
+                return _wallThickness.ToString();
+            }
+            set
+            {
+                try
+                {
+                    _wallThickness = InspectionParametrModel.Parametr(value, "Wall Thichess");
+                    /*if(_radiusFirstCylinder.ToString() != value)
+                                    {
+                                        _radiusFirstCylinder = InspectionParametrModel.Parametr(value, "Radius");
+                                        OnPropertyChanged("RadiusFirstCylinder");
+                                    }         */
+                }
+                catch (CellOutOfRangeException cellOutOfRangeExxeption)
+                {
+                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+                catch (CellFormatException cellFormatError)
+                {
+                    MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
             }
         }
 
@@ -39,11 +81,12 @@ namespace SolidWorks_2016.Model
             {
                 try
                 {
-                    if(_radiusFirstCylinder.ToString() != value)
+                    _radiusFirstCylinder = InspectionParametrModel.Parametr(value, "Radius");
+                    /*if(_radiusFirstCylinder.ToString() != value)
                                     {
                                         _radiusFirstCylinder = InspectionParametrModel.Parametr(value, "Radius");
                                         OnPropertyChanged("RadiusFirstCylinder");
-                                    }         
+                                    }         */
                 }
                 catch (CellOutOfRangeException cellOutOfRangeExxeption)
                 {
@@ -53,7 +96,6 @@ namespace SolidWorks_2016.Model
                 {
                     MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
-
             }
         }
         /// <summary>
@@ -107,9 +149,6 @@ namespace SolidWorks_2016.Model
                 {
                     MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
-
-                
-
             }
         }
         /// <summary>
@@ -137,7 +176,6 @@ namespace SolidWorks_2016.Model
                 {
                     MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
-
             }
         }
         /// <summary>
@@ -164,27 +202,39 @@ namespace SolidWorks_2016.Model
                 {
                     MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
-
             }
         }
-/*
+
+       /* 
         private void ExceptionParametrs()
         {
             try
             {
                 RadiusFirstCylinder();
-                DeepExtrusionFirstCylinder();
+                DeepExtrusionFirstCylinder{};
             }
             catch (CellOutOfRangeException cellOutOfRangeExxeption)
             {
-                MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButtons.OK, MessageBoxImage.Asterisk);
+                MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
             catch (CellFormatException cellFormatError)
             {
-                MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButtons.OK, MessageBoxImage.Asterisk);
+                MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
+        }
+        */
 
-        }*/
+        /*
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        */
 
     }
 }

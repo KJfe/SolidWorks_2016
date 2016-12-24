@@ -89,11 +89,19 @@
             Text="{Binding Path=ParametrsEndHead.HeightSecondCylinder, Mode=TwoWay}" />
 
         <Button
-            Width="75"
-            Margin="307,239,0,0"
+            Width="110"
+            Margin="272,239,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Click me" />
+            Command="{Binding ClickCommand}"
+            Content="Build EndHead" />
+        <Button
+            Width="110"
+            Margin="10,239,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding ClickCommand}"
+            Content="Open SolidWorks" />
         <TextBox
             Width="120"
             Margin="102,96,0,0"

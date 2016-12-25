@@ -11,12 +11,27 @@ namespace SolidWorks_2016.Model
     {
         public static void Parametrs(double radiusFerstCylinder, double heightFerstCylinder, 
             double radiusSecondCylinder, double heightSecondCylinder, 
-            double wallThickness,double deepExtrusionFirstCylinder)
+            double wallThicknessFerstCylinder, double wallThicknessSecondCylinder, 
+            double deepExtrusionFirstCylinder)
         {
-            if (radiusFerstCylinder >= radiusSecondCylinder)
+            if (radiusFerstCylinder < radiusSecondCylinder)
             {
-                throw new 
+                throw new CellRadiusException();
             }
+            if (wallThicknessFerstCylinder < 1)
+            {
+                throw new CellWallThicknessException("рабочей поверхности торцевой головки");
+            }
+            if (wallThicknessSecondCylinder < 1)
+            {
+                throw new CellWallThicknessException("крепежной поверхности торцевой гловки");
+            }
+            if (deepExtrusionFirstCylinder > radiusFerstCylinder)
+            {
+                throw new CellDeepExtrusionException();
+            }
+           
+
         }
     }
 }

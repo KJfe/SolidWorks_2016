@@ -1,4 +1,4 @@
-﻿namespace BuilderFigure.Model
+﻿namespace SolidWorks_2016.Model.BuilderFigure
 {
     using SolidWorks.Interop.sldworks;
     interface IBuildFigureModel

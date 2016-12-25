@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidWorks_2016.Model
+namespace SolidWorks_2016.Model.MyException
 {
     public class CellFormatException:Exception
     {

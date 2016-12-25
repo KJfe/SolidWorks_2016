@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using BuilderFigure.Model;
+using SolidWorks_2016.Model.BuilderFigure;
 using SolidWorks.Interop.sldworks;
+using SolidWorks_2016.Model.MyException;
 
 namespace SolidWorks_2016.Model
 {
@@ -27,10 +23,12 @@ namespace SolidWorks_2016.Model
                 double DeepExtrusion;
                 double SecondRadiusExtrusion;
                 FerstRadius = _radiusFirstCylinder + _wallThickness;
+                //вычисление радиуса описанной окружности квадрата
                 SecondRadius = (_radiusSecondCylinder * Math.Sqrt(2)) / 2;
                 SecondRadiusExtrusion  = SecondRadius + _wallThickness;           
                 HeightSecondCylinder = _heightFirstCylinder + _heightSecondCylinder;
-                DeepExtrusion = _heightFirstCylinder - 3;
+                //DeepExtrusion = _heightFirstCylinder - 3;
+                DeepExtrusion = _deepExtrusionFirstCylinder;
                 EndHeadFigureModel SensingHead = new EndHeadFigureModel(SwApp); 
                 SensingHead.BuildNewDocSW();
                 SensingHead.BuildNewCylinder(FerstRadius/1000, _heightFirstCylinder/1000, "Спереди", "PLANE", 0, 0, 0, false);

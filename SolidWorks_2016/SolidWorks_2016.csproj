@@ -81,6 +81,7 @@
     <Compile Include="Model\ExtrusionModel.cs" />
     <Compile Include="Model\IBuildFigureModel.cs" />
     <Compile Include="Model\InspectionParametrModel.cs" />
+    <Compile Include="Model\InspectionParametrsForBuildEndHeadModel.cs" />
     <Compile Include="Model\NewFileSW_Model.cs" />
     <Compile Include="Model\EndHeadFigureModel.cs" />
     <Compile Include="Model\ParametrsEndHeadModel.cs" />

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SolidWorks_2016.Model.MyException;
 
 namespace SolidWorks_2016.Model
 {
-    public class InspectionParametrModel
+    class InspectionParametrModel
     {
         public static double Parametr(string edit, string editDesc)
         {

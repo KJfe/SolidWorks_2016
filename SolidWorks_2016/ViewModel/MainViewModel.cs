@@ -14,7 +14,8 @@ namespace SolidWorks_2016.ViewModel
 {
     class MainViewModel: INotifyPropertyChanged
     {
-        private SldWorks _SwApp;
+        //private SldWorks _SwApp;
+
         /// <summary>
         /// Метод проверяющий изменилось ли свойство
         /// </summary>
@@ -32,8 +33,10 @@ namespace SolidWorks_2016.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            ClickCommandOpenSolidWorks = new Command(arg => ClickOpenSolidWorks());
-            ClickCommandCloseSolidWorks = new Command(arg => ClickCloseSolidWorks());
+            var OpenOrClose = new OpenSolidWorksModel();
+            ClickCommandOpenSolidWorks = new Command(arg => OpenOrClose.OpenSW());
+        
+            ClickCommandCloseSolidWorks = new Command(arg => OpenOrClose.CloseSW());
             ParametrsEndHead = new ParametrsEndHeadModel
             {
                 RadiusFirstCylinder = "0",
@@ -43,7 +46,7 @@ namespace SolidWorks_2016.ViewModel
                 DeepExtrusionFirstCylinder = "0",
                 WallThickness="3"
             };
-            ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(_SwApp));
+            ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(OpenOrClose.SwApp));
         }
 
         public ParametrsEndHeadModel ParametrsEndHead { get; set; }
@@ -57,27 +60,27 @@ namespace SolidWorks_2016.ViewModel
         /// Открытие SolidWorks v2016
         /// </summary>
         public ICommand ClickCommandOpenSolidWorks { get; set; }
-        public void ClickOpenSolidWorks()
+        public void ClickOpenSolidWorks(OpenSolidWorksModel OpenOrClose)
         {
-            // убиваем солид если запущен
-            Process[] processes = Process.GetProcessesByName("SLDWORKS 2016");
-            foreach (Process process in processes)
-                {
-                    process.CloseMainWindow();
-                    process.Kill();
-                }
-            // запуск солид
-            object processSW = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application"));
-            _SwApp = (SldWorks)processSW;
-            _SwApp.Visible = true;
+            /* // убиваем солид если запущен
+             Process[] processes = Process.GetProcessesByName("SLDWORKS 2016");
+             foreach (Process process in processes)
+                 {
+                     process.CloseMainWindow();
+                     process.Kill();
+                 }
+             // запуск солид
+             object processSW = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application"));
+             _SwApp = (SldWorks)processSW;
+             _SwApp.Visible = true;*/
         }
         /// <summary>
         /// Закрытие SolidWorks
         /// </summary>
         public ICommand ClickCommandCloseSolidWorks { get; set; }
-        public void ClickCloseSolidWorks()
+        public void ClickCloseSolidWorks(OpenSolidWorksModel OpenOrClose)
         {
-            _SwApp.ExitApp();
+            //_SwApp.ExitApp();
         }
         /// <summary>
         /// Открыт ли солид воркс

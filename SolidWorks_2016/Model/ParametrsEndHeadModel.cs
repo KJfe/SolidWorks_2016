@@ -12,13 +12,13 @@ namespace SolidWorks_2016.Model
         public void BuildEndHead(SldWorks SwApp)
         {
             
-            if ((_radiusFirstCylinder >= _radiusSecondCylinder) && 
+           /* if ((_radiusFirstCylinder >= _radiusSecondCylinder) && 
                 (_wallThickness < _heightFirstCylinder) &&
                 (_wallThickness < _heightSecondCylinder) &&
-                (_heightFirstCylinder>3))
+                (_heightFirstCylinder>3))*/
+            try
             {
-                MessageBox.Show("This is click command.");
-                double FerstRadius;
+                double FirstRadius;
                 double SecondRadius;
                 double HeightSecondCylinder;
                 double DeepExtrusion;
@@ -27,19 +27,32 @@ namespace SolidWorks_2016.Model
                 xyz.X = 0;
                 xyz.Y = 0;
                 xyz.Z = 0;
-                FerstRadius = _radiusFirstCylinder + _wallThickness;
+                FirstRadius = _radiusFirstCylinder + _wallThickness;
                 //вычисление радиуса описанной окружности квадрата
-                SecondRadius = (_radiusSecondCylinder * Math.Sqrt(2)) / 2;
-                SecondRadiusExtrusion  = SecondRadius + _wallThickness;           
+                SecondRadiusExtrusion = (_radiusSecondCylinder * Math.Sqrt(2)) / 2;
+                SecondRadius = SecondRadiusExtrusion + _wallThickness;           
                 HeightSecondCylinder = _heightFirstCylinder + _heightSecondCylinder;
                 //DeepExtrusion = _heightFirstCylinder - 3;
                 DeepExtrusion = _deepExtrusionFirstCylinder;
+                InspectionParametrsForBuildEndHeadModel.Parametrs(FirstRadius, _heightFirstCylinder, SecondRadius, HeightSecondCylinder, _wallThickness, _wallThickness, DeepExtrusion);
                 EndHeadFigureModel SensingHead = new EndHeadFigureModel(SwApp); 
                 SensingHead.BuildNewDocSW();
-                SensingHead.BuildNewCylinder(FerstRadius/1000, _heightFirstCylinder/1000, "Спереди", "PLANE", xyz, false);
-                SensingHead.BuildNewCylinder(SecondRadiusExtrusion / 1000, HeightSecondCylinder / 1000, "Спереди", "PLANE", xyz, false);
+                SensingHead.BuildNewCylinder(FirstRadius / 1000, _heightFirstCylinder/1000, "Спереди", "PLANE", xyz, false);
+                SensingHead.BuildNewCylinder(SecondRadius / 1000, HeightSecondCylinder / 1000, "Спереди", "PLANE", xyz, false);
                 SensingHead.BuildExtrusion(true, _radiusFirstCylinder / 1000, 6, DeepExtrusion / 1000);
                 SensingHead.BuildExtrusion(true, SecondRadius / 1000, 4, HeightSecondCylinder / 1000);
+            }
+            catch(CellDeepExtrusionException cellDeepExtrusionException)
+            {
+                MessageBox.Show(cellDeepExtrusionException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            catch(CellRadiusException cellRadiusException)
+            {
+                MessageBox.Show(cellRadiusException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            catch (CellWallThicknessException cellWallThicknessException)
+            {
+                MessageBox.Show(cellWallThicknessException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
         }
         /// <summary>
@@ -63,9 +76,9 @@ namespace SolidWorks_2016.Model
                                         OnPropertyChanged("RadiusFirstCylinder");
                                     }         */
                 }
-                catch (CellOutOfRangeException cellOutOfRangeExxeption)
+                catch (CellOutOfRangeException cellOutOfRangeException)
                 {
-                    MessageBox.Show(cellOutOfRangeExxeption.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    MessageBox.Show(cellOutOfRangeException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 catch (CellFormatException cellFormatError)
                 {

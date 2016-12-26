@@ -115,5 +115,12 @@
             VerticalAlignment="Top"
             IsReadOnly="True"
             Text="{Binding Path=ParametrsEndHead.DeepExtrusionFirstCylinder, Mode=TwoWay}" />
+        <Button
+            Width="110"
+            Margin="144,239,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding ClickCommandCloseSolidWorks}"
+            Content="Close" />
     </Grid>
 </Window>

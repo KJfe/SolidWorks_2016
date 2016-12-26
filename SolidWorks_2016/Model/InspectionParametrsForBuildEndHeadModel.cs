@@ -26,7 +26,7 @@ namespace SolidWorks_2016.Model
             {
                 throw new CellWallThicknessException("крепежной поверхности торцевой гловки");
             }
-            if (deepExtrusionFirstCylinder > radiusFerstCylinder)
+            if (deepExtrusionFirstCylinder > heightFerstCylinder)
             {
                 throw new CellDeepExtrusionException();
             }

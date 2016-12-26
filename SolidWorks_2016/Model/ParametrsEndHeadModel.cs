@@ -3,6 +3,7 @@ using System.Windows;
 using SolidWorks_2016.Model.BuilderFigure;
 using SolidWorks.Interop.sldworks;
 using SolidWorks_2016.Model.MyException;
+using System.Windows.Media.Media3D;
 
 namespace SolidWorks_2016.Model
 {
@@ -22,6 +23,10 @@ namespace SolidWorks_2016.Model
                 double HeightSecondCylinder;
                 double DeepExtrusion;
                 double SecondRadiusExtrusion;
+                var xyz = new Point3D();
+                xyz.X = 0;
+                xyz.Y = 0;
+                xyz.Z = 0;
                 FerstRadius = _radiusFirstCylinder + _wallThickness;
                 //вычисление радиуса описанной окружности квадрата
                 SecondRadius = (_radiusSecondCylinder * Math.Sqrt(2)) / 2;
@@ -31,8 +36,8 @@ namespace SolidWorks_2016.Model
                 DeepExtrusion = _deepExtrusionFirstCylinder;
                 EndHeadFigureModel SensingHead = new EndHeadFigureModel(SwApp); 
                 SensingHead.BuildNewDocSW();
-                SensingHead.BuildNewCylinder(FerstRadius/1000, _heightFirstCylinder/1000, "Спереди", "PLANE", 0, 0, 0, false);
-                SensingHead.BuildNewCylinder(SecondRadiusExtrusion / 1000, HeightSecondCylinder / 1000, "Спереди", "PLANE", 0, 0, 0, false);
+                SensingHead.BuildNewCylinder(FerstRadius/1000, _heightFirstCylinder/1000, "Спереди", "PLANE", xyz, false);
+                SensingHead.BuildNewCylinder(SecondRadiusExtrusion / 1000, HeightSecondCylinder / 1000, "Спереди", "PLANE", xyz, false);
                 SensingHead.BuildExtrusion(true, _radiusFirstCylinder / 1000, 6, DeepExtrusion / 1000);
                 SensingHead.BuildExtrusion(true, SecondRadius / 1000, 4, HeightSecondCylinder / 1000);
             }

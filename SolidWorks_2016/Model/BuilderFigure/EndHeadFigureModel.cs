@@ -1,12 +1,14 @@
 ﻿namespace SolidWorks_2016.Model.BuilderFigure
 {
     using SolidWorks.Interop.sldworks;
+    using System.Windows.Media.Media3D;
+
     /// <summary>
     /// Класс собирающий Торцевую головку
     /// ПОКА СДЕЛАН СТАТИЧНЫМ МОЖЕТ НАДО ПЕРЕДЕЛАТЬ В ОБЫНЫЙ
     /// 
     /// </summary>
-     class EndHeadFigureModel
+    class EndHeadFigureModel
     {
          private SldWorks _SwApp;
 
@@ -24,9 +26,9 @@
             swModel = newdoc.Build;
         }
 
-        public  void BuildNewCylinder(double radius, double height, string name, string type, double x, double y, double z, bool dir)
+        public  void BuildNewCylinder(double radius, double height, string name, string type, Point3D xyz, bool dir)
         {
-            var cylinder = new CylinderModel(radius, height, swModel, name, type, x, y, z, dir);
+            var cylinder = new CylinderModel(radius, height, swModel, name, type, xyz, dir);
             swModel = cylinder.Build;
         }
 

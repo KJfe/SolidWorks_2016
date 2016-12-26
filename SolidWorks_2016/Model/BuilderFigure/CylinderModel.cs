@@ -1,31 +1,29 @@
 ﻿namespace SolidWorks_2016.Model.BuilderFigure
 {
     using SolidWorks.Interop.sldworks;
+    using System.Windows.Media.Media3D;
+
     /// <summary>
     /// Класс строющий цилиндр
     /// </summary>
     class CylinderModel:IBuildFigureModel
     {
+        private Point3D _xyz;
         private IModelDoc2 _swModel;
         private double _radius;
         private double _height;
         private string _name;
         private string _type;
-        private double _x;
-        private double _y;
-        private double _z;
         private bool _dir;
 
-        public CylinderModel(double radius, double height, IModelDoc2 swModel, string name, string type, double x, double y, double z, bool dir)
+        public CylinderModel(double radius, double height, IModelDoc2 swModel, string name, string type, Point3D xyz, bool dir)
         {
             _radius = radius;
             _height = height;
             _swModel = swModel;
             _name = name;
             _type = type;
-            _x = x;
-            _y = y;
-            _z = z;
+            _xyz = xyz;
             _dir = dir;
         }
 
@@ -33,7 +31,7 @@
         {
             get
             {
-                _swModel.Extension.SelectByID2(_name, _type, _x, _y, _z, false, 0, null, 0);//задаем плоскость
+                _swModel.Extension.SelectByID2(_name, _type, _xyz.X, _xyz.Y, _xyz.Z, false, 0, null, 0);//задаем плоскость
                 _swModel.SketchManager.InsertSketch(true);
                 _swModel.SketchManager.CreateCircle(0, 0, 0, 0, _radius, 0);     // создаем окружность
                 _swModel.Extension.SelectByID2("Arc1", "SKETCHSEGMENT", 0, 0, 0, false, 0, null, 0);     //выбираем контур для выдавливания

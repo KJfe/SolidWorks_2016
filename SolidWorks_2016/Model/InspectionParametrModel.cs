@@ -26,6 +26,8 @@ namespace SolidWorks_2016.Model
                 throw new CellOutOfRangeException(editDesc);
             }
             return doubleEdit;
+
         }
+
     }
 }

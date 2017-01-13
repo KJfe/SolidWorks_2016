@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SolidWorks_2016.Model;
+using SolidWorks_2016.Model.MyException;
 using System.Windows;
 using System.Windows.Input;
 using SolidWorks.Interop.sldworks;
@@ -33,10 +34,10 @@ namespace SolidWorks_2016.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            var OpenOrClose = new OpenSolidWorksModel();
+            var OpenOrClose = new OpenOrCloseSWModel();
             ClickCommandOpenSolidWorks = new Command(arg => OpenOrClose.OpenSW());
-        
             ClickCommandCloseSolidWorks = new Command(arg => OpenOrClose.CloseSW());
+
             ParametrsEndHead = new ParametrsEndHeadModel
             {
                 RadiusFirstCylinder = "0",
@@ -46,10 +47,30 @@ namespace SolidWorks_2016.ViewModel
                 DeepExtrusionFirstCylinder = "0",
                 WallThickness="3"
             };
-            ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(OpenOrClose.SwApp));
+                ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(OpenOrClose.SwApp));
+            
         }
 
-        public ParametrsEndHeadModel ParametrsEndHead { get; set; }
+        private ParametrsEndHeadModel _ParametrsEndHead;
+        public ParametrsEndHeadModel ParametrsEndHead
+        {
+            get
+            {
+                return _ParametrsEndHead;
+            }
+            set
+            {
+                try
+                {
+                    _ParametrsEndHead = value;
+                }
+                catch(CellFormatException exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+                
+            }
+        }
         
         /// <summary>
         /// Создание торцевой головки
@@ -60,28 +81,12 @@ namespace SolidWorks_2016.ViewModel
         /// Открытие SolidWorks v2016
         /// </summary>
         public ICommand ClickCommandOpenSolidWorks { get; set; }
-        public void ClickOpenSolidWorks(OpenSolidWorksModel OpenOrClose)
-        {
-            /* // убиваем солид если запущен
-             Process[] processes = Process.GetProcessesByName("SLDWORKS 2016");
-             foreach (Process process in processes)
-                 {
-                     process.CloseMainWindow();
-                     process.Kill();
-                 }
-             // запуск солид
-             object processSW = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application"));
-             _SwApp = (SldWorks)processSW;
-             _SwApp.Visible = true;*/
-        }
+
         /// <summary>
         /// Закрытие SolidWorks
         /// </summary>
         public ICommand ClickCommandCloseSolidWorks { get; set; }
-        public void ClickCloseSolidWorks(OpenSolidWorksModel OpenOrClose)
-        {
-            //_SwApp.ExitApp();
-        }
+
         /// <summary>
         /// Открыт ли солид воркс
         /// </summary>

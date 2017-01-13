@@ -7,15 +7,10 @@ using System.Windows.Media.Media3D;
 
 namespace SolidWorks_2016.Model
 {
-    public class ParametrsEndHeadModel//: INotifyPropertyChanged
+    public class ParametrsEndHeadModel
     {
         public void BuildEndHead(SldWorks SwApp)
         {
-            
-           /* if ((_radiusFirstCylinder >= _radiusSecondCylinder) && 
-                (_wallThickness < _heightFirstCylinder) &&
-                (_wallThickness < _heightSecondCylinder) &&
-                (_heightFirstCylinder>3))*/
             try
             {
                 double FirstRadius;
@@ -32,7 +27,6 @@ namespace SolidWorks_2016.Model
                 SecondRadiusExtrusion = (_radiusSecondCylinder * Math.Sqrt(2)) / 2;
                 SecondRadius = SecondRadiusExtrusion + _wallThickness;           
                 HeightSecondCylinder = _heightFirstCylinder + _heightSecondCylinder;
-                //DeepExtrusion = _heightFirstCylinder - 3;
                 DeepExtrusion = _deepExtrusionFirstCylinder;
                 InspectionParametrsForBuildEndHeadModel.Parametrs(FirstRadius, _heightFirstCylinder, SecondRadius, HeightSecondCylinder, _wallThickness, _wallThickness, DeepExtrusion);
                 EndHeadFigureModel SensingHead = new EndHeadFigureModel(SwApp); 
@@ -69,21 +63,24 @@ namespace SolidWorks_2016.Model
             {
                 try
                 {
-                    _wallThickness = InspectionParametrModel.Parametr(value, "Wall Thichess");
-                    /*if(_radiusFirstCylinder.ToString() != value)
-                                    {
-                                        _radiusFirstCylinder = InspectionParametrModel.Parametr(value, "Radius");
-                                        OnPropertyChanged("RadiusFirstCylinder");
-                                    }         */
+                    _wallThickness = Convert.ToDouble(value);
                 }
-                catch (CellOutOfRangeException cellOutOfRangeException)
+                catch(Exception)
+                {
+                    throw new CellFormatException("WallThickness error");
+                }
+                
+                    //_wallThickness = InspectionParametrModel.Parametr(value, "Wall Thichess");
+
+                /*catch (CellOutOfRangeException cellOutOfRangeException)
                 {
                     MessageBox.Show(cellOutOfRangeException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 }
                 catch (CellFormatException cellFormatError)
                 {
                     MessageBox.Show(cellFormatError.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                }
+                }*/
+
             }
         }
 
@@ -102,11 +99,6 @@ namespace SolidWorks_2016.Model
                 try
                 {
                     _radiusFirstCylinder = InspectionParametrModel.Parametr(value, "Radius");
-                    /*if(_radiusFirstCylinder.ToString() != value)
-                                    {
-                                        _radiusFirstCylinder = InspectionParametrModel.Parametr(value, "Radius");
-                                        OnPropertyChanged("RadiusFirstCylinder");
-                                    }         */
                 }
                 catch (CellOutOfRangeException cellOutOfRangeExxeption)
                 {
@@ -224,19 +216,5 @@ namespace SolidWorks_2016.Model
                 }
             }
         }
-
-        
-        /*
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        */
-
     }
 }

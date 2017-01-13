@@ -8,19 +8,25 @@ using System.Threading.Tasks;
 
 namespace SolidWorks_2016.Model
 {
-    class OpenSolidWorksModel
+    class OpenOrCloseSWModel
     {
+        /// <summary>
+        /// свойство передающее 
+        /// </summary>
         private SldWorks _SwApp;
         public SldWorks SwApp
         {
             get { return _SwApp; }
             set { _SwApp = value; }
         }
+        /// <summary>
+        /// Открыт ли Solid Works
+        /// </summary>
+        /// <returns></returns>
         public bool IsOpenSW()
         {
             // убиваем солид если запущен
-
-            Process[] processes = Process.GetProcessesByName("SLDWORKS 2016");
+            Process[] processes = Process.GetProcessesByName("SLDWORKS");
             foreach (Process process in processes)
             {
                 process.CloseMainWindow();
@@ -28,6 +34,7 @@ namespace SolidWorks_2016.Model
             }
             return false;
         }
+
         /// <summary>
         /// Открытие SolidWorks
         /// </summary>
@@ -37,15 +44,19 @@ namespace SolidWorks_2016.Model
             // запуск солид
             object processSW = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application"));
             _SwApp = (SldWorks)processSW;
+            _SwApp.UserControl = true;
             _SwApp.Visible = true;
-            SwApp=_SwApp;
+            SwApp = _SwApp;
         }
         /// <summary>
         /// Закрытие SolidWorks
         /// </summary>
         public void CloseSW()
         {
-            SwApp.ExitApp();
+            if (!IsOpenSW()&&SwApp!=null)
+            {
+                SwApp.ExitApp();
+            }
         }
     }
 }

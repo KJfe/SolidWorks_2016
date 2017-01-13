@@ -87,7 +87,7 @@
     <Compile Include="Model\BuilderFigure\EndHeadFigureModel.cs" />
     <Compile Include="Model\MyException\CellRadiusException.cs" />
     <Compile Include="Model\MyException\CellWallThicknessException.cs" />
-    <Compile Include="Model\OpenSolidWorksModel.cs" />
+    <Compile Include="Model\OpenOrCloseSWModel.cs" />
     <Compile Include="Model\ParametrsEndHeadModel.cs" />
     <Compile Include="Model\BuilderFigure\RoundingModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

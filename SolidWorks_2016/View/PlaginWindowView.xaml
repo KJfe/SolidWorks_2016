@@ -110,11 +110,24 @@
             Text="{Binding Path=ParametrsEndHead.DeepExtrusionFirstCylinder, Mode=TwoWay}" />
         <TextBox
             Width="120"
+            Margin="102,119,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="{Binding Path=ParametrsEndHead.WallThickness, Mode=TwoWay}" />
+        <TextBox
+            Width="120"
             Margin="227,96,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             IsReadOnly="True"
             Text="{Binding Path=ParametrsEndHead.DeepExtrusionFirstCylinder, Mode=TwoWay}" />
+        <TextBox
+            Width="120"
+            Margin="227,119,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            IsReadOnly="True"
+            Text="{Binding Path=ParametrsEndHead.WallThickness, Mode=TwoWay}" />
         <Button
             Width="110"
             Margin="144,239,0,0"

@@ -30,8 +30,6 @@ namespace SolidWorks_2016.Model
             {
                 throw new CellDeepExtrusionException();
             }
-           
-
         }
     }
 }

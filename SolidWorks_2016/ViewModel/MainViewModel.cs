@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolidWorks_2016.Model;
+﻿using SolidWorks_2016.Model;
 using SolidWorks_2016.Model.MyException;
 using System.Windows;
 using System.Windows.Input;
-using SolidWorks.Interop.sldworks;
-using System.Diagnostics;
 using System.ComponentModel;
+using System.Windows.Media.Media3D;
 
 namespace SolidWorks_2016.ViewModel
 {
@@ -38,21 +32,29 @@ namespace SolidWorks_2016.ViewModel
             ClickCommandOpenSolidWorks = new Command(arg => OpenOrClose.OpenSW());
             ClickCommandCloseSolidWorks = new Command(arg => OpenOrClose.CloseSW());
 
-            ParametrsEndHead = new ParametrsEndHeadModel
+            InputParametr = new InputParametrs
             {
-                RadiusFirstCylinder = "0",
-                RadiusSecondCylinder = "0",
+                SizeOfWorkingSurface = "0",
+                SizeAttachmentPortion = "0",
                 HeightFirstCylinder = "0",
                 HeightSecondCylinder = "0",
-                DeepExtrusionFirstCylinder = "0",
-                WallThickness="3"
+                DepthOfWorkSurface = "0",
+                WallThicknessFirstCylinder = "1",
+                WallThicknessSecondCylinder = "1"
             };
-                ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(OpenOrClose.SwApp));
+            ParametrsForBuilder parametrsForBuilder = new ParametrsForBuilder();
+            BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
+            ClickCommandBuilder = new Command(arg => {
+                parametrsForBuilder = InputParametr.InspectionInputParametrs();
+                buildEndHeadFigure.ff(parametrsForBuilder);
+                buildEndHeadFigure.BuildEndHead(OpenOrClose.SwApp);
+            });
+            //ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(OpenOrClose.SwApp));
             
         }
 
-        private ParametrsEndHeadModel _ParametrsEndHead;
-        public ParametrsEndHeadModel ParametrsEndHead
+        private InputParametrs _ParametrsEndHead;
+        public InputParametrs InputParametr
         {
             get
             {

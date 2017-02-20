@@ -2,6 +2,7 @@
     x:Class="SolidWorks_2016.View.PlaginWindowView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:myns="clr-namespace:SolidWorks_2016.ViewModel"
     Title="MainWindow"
     Width="400"
     Height="300">
@@ -10,84 +11,101 @@
             Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="First Radius" />
+            Text="S1" />
         <TextBlock
             Margin="8,50,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="First height" />
+            Text="E1" />
         <TextBlock
             Margin="8,29,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="Second Radius" />
+            Text="H1" />
         <TextBlock
             Margin="10,73,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="Second height" />
+            Text="S2" />
         <TextBlock
             Margin="12,94,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="Вырез deep" />
+            Text="H2" />
 
         <TextBox
             Width="120"
-            Margin="102,8,0,0"
+            Margin="52,8,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding Path=ParametrsEndHead.RadiusFirstCylinder, Mode=TwoWay}" />
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding
+                    Mode="TwoWay"
+                    NotifyOnValidationError="True"
+                    Path="InputParametr.SizeOfWorkingSurface"
+                    UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <myns:ParametrRule Max="250" />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox
             Width="120"
-            Margin="102,27,0,0"
+            Margin="52,27,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding Path=ParametrsEndHead.RadiusSecondCylinder, Mode=TwoWay}" />
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding
+                    Mode="TwoWay"
+                    NotifyOnValidationError="True"
+                    Path="InputParametr.HeightFirstCylinder"
+                    UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <myns:ParametrRule Max="250" />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <TextBox
             Width="120"
-            Margin="102,50,0,0"
+            Margin="52,50,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding Path=ParametrsEndHead.HeightFirstCylinder, Mode=TwoWay}" />
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding
+                    Mode="TwoWay"
+                    NotifyOnValidationError="True"
+                    Path="InputParametr.DepthOfWorkSurface"
+                    UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <myns:ParametrRule Max="250" />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <TextBox
             Width="120"
-            Margin="102,73,0,0"
+            Margin="52,73,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding Path=ParametrsEndHead.HeightSecondCylinder, Mode=TwoWay}" />
-
-        <TextBox
-            Width="120"
-            Margin="227,8,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding Path=ParametrsEndHead.RadiusFirstCylinder, Mode=TwoWay}" />
-        <TextBox
-            Width="120"
-            Margin="227,27,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding Path=ParametrsEndHead.RadiusSecondCylinder, Mode=TwoWay}" />
-
-        <TextBox
-            Width="120"
-            Margin="227,50,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding Path=ParametrsEndHead.HeightFirstCylinder, Mode=TwoWay}" />
-        <TextBox
-            Width="120"
-            Margin="227,73,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding Path=ParametrsEndHead.HeightSecondCylinder, Mode=TwoWay}" />
-
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding
+                    Mode="TwoWay"
+                    NotifyOnValidationError="True"
+                    Path="InputParametr.SizeAttachmentPortion"
+                    UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <myns:ParametrRule Max="250" />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button
             Width="110"
             Margin="272,239,0,0"
@@ -104,30 +122,22 @@
             Content="Open SolidWorks" />
         <TextBox
             Width="120"
-            Margin="102,96,0,0"
+            Margin="52,96,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding Path=ParametrsEndHead.DeepExtrusionFirstCylinder, Mode=TwoWay}" />
-        <TextBox
-            Width="120"
-            Margin="102,119,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding Path=ParametrsEndHead.WallThickness, Mode=TwoWay}" />
-        <TextBox
-            Width="120"
-            Margin="227,96,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding Path=ParametrsEndHead.DeepExtrusionFirstCylinder, Mode=TwoWay}" />
-        <TextBox
-            Width="120"
-            Margin="227,119,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding Path=ParametrsEndHead.WallThickness, Mode=TwoWay}" />
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding
+                    Mode="TwoWay"
+                    NotifyOnValidationError="True"
+                    Path="InputParametr.HeightSecondCylinder"
+                    UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <myns:ParametrRule Max="250" />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button
             Width="110"
             Margin="144,239,0,0"
@@ -135,5 +145,65 @@
             VerticalAlignment="Top"
             Command="{Binding ClickCommandCloseSolidWorks}"
             Content="Close" />
+        <TextBox
+            Width="120"
+            Margin="52,119,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding
+                    Mode="TwoWay"
+                    NotifyOnValidationError="True"
+                    Path="InputParametr.DepthOfWorkSurface"
+                    UpdateSourceTrigger="LostFocus">
+                    <Binding.ValidationRules>
+                        <myns:ParametrRule Max="150" />
+                        <ExceptionValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock
+            Margin="10,121,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="W1" />
+        <TextBox
+            Width="120"
+            Margin="52,119,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="InputParametr.WallThicknessFirstCylinder"
+                UpdateSourceTrigger="LostFocus">
+                <Binding.ValidationRules>
+                    <myns:ParametrRule Max="150" />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <TextBlock
+            Margin="12,142,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="W2" />
+        <TextBox
+            Width="120"
+            Margin="52,142,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <Binding
+                Mode="TwoWay"
+                NotifyOnValidationError="True"
+                Path="InputParametr.WallThicknessSecondCylinder"
+                UpdateSourceTrigger="LostFocus">
+                <Binding.ValidationRules>
+                    <myns:ParametrRule Max="150" />
+                    <ExceptionValidationRule />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
     </Grid>
 </Window>

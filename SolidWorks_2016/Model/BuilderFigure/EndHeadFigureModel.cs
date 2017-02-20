@@ -5,8 +5,6 @@
 
     /// <summary>
     /// Класс собирающий Торцевую головку
-    /// ПОКА СДЕЛАН СТАТИЧНЫМ МОЖЕТ НАДО ПЕРЕДЕЛАТЬ В ОБЫНЫЙ
-    /// 
     /// </summary>
     class EndHeadFigureModel
     {
@@ -18,7 +16,8 @@
         }
 
         // SldWorks SwApp; // отвечает за получение обекта в солиде
-        private IModelDoc2 swModel; // создаем  (деталь чертеж и т.д.) 
+        // создаем  (деталь чертеж и т.д.) 
+        private IModelDoc2 swModel; 
 
         public void BuildNewDocSW()
         {
@@ -32,9 +31,9 @@
             swModel = cylinder.Build;
         }
 
-        public  void BuildExtrusion(bool dir, double radiusPolygon, int numberPolygon, double deepPolygon)
+        public  void BuildExtrusion(bool dir, double radiusPolygon, int numberPolygon, double deepPolygon, bool inscribed)
         {
-            var extrutionCylinder = new ExtrusionModel(swModel, dir, radiusPolygon, numberPolygon, deepPolygon);
+            var extrutionCylinder = new ExtrusionModel(swModel, dir, radiusPolygon, numberPolygon, deepPolygon, inscribed);
             swModel = extrutionCylinder.Build;
         }
 

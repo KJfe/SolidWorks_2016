@@ -6,6 +6,7 @@
     using System.Windows.Media.Media3D;
     using System;
     using System.Windows.Controls;
+    using System.Collections.Generic;
 
     public class InputParametrs
     {
@@ -33,8 +34,8 @@
                 double depthOfWorkSurface;
                 Point3D xyz = new Point3D(0, 0, 0);
 
-                radiusForSizeOfWorkingSurface = _sizeOfWorkingSurface / (mm * 2);
-                radiusForSizeAttachmentPortion = _sizeAttachmentPortion / (mm * 2);
+                radiusForSizeOfWorkingSurface = (_sizeOfWorkingSurface + sigma) / (mm * 2);
+                radiusForSizeAttachmentPortion = (_sizeAttachmentPortion + sigma) / (mm * 2);
 
                 radiusFirstCylinder = radiusForSizeOfWorkingSurface + _wallThicknessFirstCylinder/mm;
                 radiusSecondCylinder = radiusForSizeAttachmentPortion + _wallThicknessSecondCylinder/mm;
@@ -50,15 +51,15 @@
                     depthOfWorkSurface);
 
                 //передача параметров в класс для хранения 
-
-                inputParametrsForBuilder.InputParametrsFigure(
-                    radiusFirstCylinder,
-                    radiusSecondCylinder,
-                    heightFirstCylinder,
-                    heightSecondCylinder,
-                    radiusForSizeOfWorkingSurface,
-                    radiusForSizeAttachmentPortion,
-                    depthOfWorkSurface);
+                List<double> ParametrsList= new List<double>();
+                ParametrsList.Add(radiusFirstCylinder);
+                ParametrsList.Add(radiusSecondCylinder);
+                ParametrsList.Add(heightFirstCylinder);
+                ParametrsList.Add(heightSecondCylinder);
+                ParametrsList.Add(radiusForSizeOfWorkingSurface);
+                ParametrsList.Add(radiusForSizeAttachmentPortion);
+                ParametrsList.Add(depthOfWorkSurface);
+                inputParametrsForBuilder.Parametrs=ParametrsList;
                 return inputParametrsForBuilder;
             }
             catch (CellDeepExtrusionException cellDeepExtrusionException)

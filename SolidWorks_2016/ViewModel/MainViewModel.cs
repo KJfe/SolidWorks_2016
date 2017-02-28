@@ -27,9 +27,10 @@ namespace SolidWorks_2016.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            Application app = Application.Current;
             var OpenOrClose = new OpenOrCloseSWModel();
             ClickCommandOpenSolidWorks = new Command(arg => { OpenOrClose.OpenSW(); IsEnabledOpenSW = true; });
-            ClickCommandCloseSolidWorks = new Command(arg => OpenOrClose.CloseSW());
+            ClickCommandCloseSolidWorks = new Command(arg => { OpenOrClose.CloseSW();app.Shutdown();});
             
             InputParametr = new InputParametrs
             {
@@ -53,6 +54,9 @@ namespace SolidWorks_2016.ViewModel
             });            
         }
 
+        /// <summary>
+        /// Вводим парамтры с View в Model
+        /// </summary>
         private InputParametrs _inputParametr;
         public InputParametrs InputParametr
         {
@@ -69,8 +73,7 @@ namespace SolidWorks_2016.ViewModel
                 catch(CellFormatException exception)
                 {
                     MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                }
-                
+                }   
             }
         }
         
@@ -94,6 +97,9 @@ namespace SolidWorks_2016.ViewModel
         /// </summary>
         public ICommand IsEnabledCommandOpenSW { get; set; }
 
+        /// <summary>
+        /// Открыт ли SW
+        /// </summary>
         private bool _isEnabledOpenSW;
         public bool IsEnabledOpenSW
         {

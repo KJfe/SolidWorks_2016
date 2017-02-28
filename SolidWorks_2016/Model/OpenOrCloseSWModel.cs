@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SolidWorks_2016.Model
 {
@@ -25,12 +26,10 @@ namespace SolidWorks_2016.Model
         /// <returns></returns>
         public bool IsOpenSW()
         {
-            // убиваем солид если запущен
             Process[] processes = Process.GetProcessesByName("SLDWORKS");
             foreach (Process process in processes)
             {
-                process.CloseMainWindow();
-                process.Kill();
+                return true;
             }
             return false;
         }
@@ -53,7 +52,7 @@ namespace SolidWorks_2016.Model
         /// </summary>
         public void CloseSW()
         {
-            if (!IsOpenSW()&&SwApp!=null)
+            if (IsOpenSW()&&(SwApp!=null))
             {
                 SwApp.ExitApp();
             }

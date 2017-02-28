@@ -6,6 +6,7 @@
     using SolidWorks.Interop.sldworks;
     using SolidWorks_2016.Model.MyException;
     using System.Windows.Media.Media3D;
+    using System.Collections.Generic;
 
     public class BuildEndHeadFigure
     {
@@ -20,12 +21,11 @@
 
         public void InputParametrsForBuilding(ParametrsForBuilder parametrForBuilder)
         {
-            double[] parametrs = parametrForBuilder.OptionsParametrs;
+            List<double> parametrs = parametrForBuilder.Parametrs;
             _radiusFirstCylinder = parametrs[0];
             _radiusSecondCylinder = parametrs[1];
             _heightFirstCylinder = parametrs[2];
             _heightSecondCylinder = parametrs[3];
-            
             _radiusForSizeOfWorkingSurface = parametrs[4];
             _radiusForSizeAttachmentPortion = parametrs[5];
             _depthOfWorkSurface = parametrs[6];

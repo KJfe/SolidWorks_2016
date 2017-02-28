@@ -22,6 +22,7 @@ namespace SolidWorks_2016.View
         public PlaginWindowView()
         {
             InitializeComponent();
+            
         }
     }
 }

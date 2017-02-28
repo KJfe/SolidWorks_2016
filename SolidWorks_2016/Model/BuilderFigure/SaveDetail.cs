@@ -23,7 +23,10 @@
         {
             get
             {
-                _swModel.SaveAs4("C:\\temp\\test.SLDPRT", 0, 2, 0, 0);
+                if (_path == "")
+                {
+                    _swModel.SaveAs4(_path, 0, 2, 0, 0);
+                }
                 return _swModel;
             }
         }

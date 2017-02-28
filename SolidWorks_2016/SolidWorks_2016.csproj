@@ -93,6 +93,7 @@
     <Compile Include="Model\BuilderFigure\RoundingModel.cs" />
     <Compile Include="Model\BuildEndHeadFigure.cs" />
     <Compile Include="ViewModel\InputParametrs.cs" />
+    <Compile Include="ViewModel\SaveDialog.cs" />
     <Compile Include="ViewModel\ParametrRule.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />

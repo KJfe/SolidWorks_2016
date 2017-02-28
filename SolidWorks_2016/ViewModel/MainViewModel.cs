@@ -29,6 +29,7 @@ namespace SolidWorks_2016.ViewModel
         {
             Application app = Application.Current;
             var OpenOrClose = new OpenOrCloseSWModel();
+            SaveDialog saveDialog = new SaveDialog();
             ClickCommandOpenSolidWorks = new Command(arg => { OpenOrClose.OpenSW(); IsEnabledOpenSW = true; });
             ClickCommandCloseSolidWorks = new Command(arg => { OpenOrClose.CloseSW();app.Shutdown();});
             
@@ -45,11 +46,12 @@ namespace SolidWorks_2016.ViewModel
             ParametrsForBuilder parametrsForBuilder = new ParametrsForBuilder();
             BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
             ClickCommandBuilder = new Command(arg => {
+                
                 if(InputParametr.InspectionInputParametrs() != null)
                 {
                     parametrsForBuilder = InputParametr.InspectionInputParametrs();
                     buildEndHeadFigure.InputParametrsForBuilding(parametrsForBuilder);
-                    buildEndHeadFigure.BuildEndHead(OpenOrClose.SwApp);
+                    buildEndHeadFigure.BuildEndHead(OpenOrClose.SwApp, saveDialog.SaveDialogFile());
                 }
             });            
         }

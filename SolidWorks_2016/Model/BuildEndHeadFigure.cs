@@ -40,7 +40,7 @@
         /// </summary>
         /// <param name="SwApp"></param>
         /// <returns></returns>
-        public bool BuildEndHead(SldWorks SwApp)
+        public bool BuildEndHead(SldWorks SwApp, string path)
         {
             if(SwApp!=null)
             {
@@ -50,7 +50,7 @@
                 SensingHead.BuildNewCylinder(_radiusSecondCylinder, _heightSecondCylinder, "Спереди", "PLANE", _xyz, false);
                 SensingHead.BuildExtrusion(true, _radiusForSizeOfWorkingSurface, 6, _depthOfWorkSurface, true);
                 SensingHead.BuildExtrusion(true, _radiusForSizeAttachmentPortion, 4, _heightSecondCylinder, true);
-                SensingHead.SaveDetail("c:\temp");
+                SensingHead.SaveDetail(path);
                 return true;
             }
             return false;

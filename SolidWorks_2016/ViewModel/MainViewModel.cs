@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolidWorks_2016.Model;
+﻿using SolidWorks_2016.Model;
 using SolidWorks_2016.Model.MyException;
 using System.Windows;
 using System.Windows.Input;
-using SolidWorks.Interop.sldworks;
-using System.Diagnostics;
 using System.ComponentModel;
+using System.Windows.Media.Media3D;
+using System.Windows.Controls;
 
 namespace SolidWorks_2016.ViewModel
 {
     class MainViewModel: INotifyPropertyChanged
     {
-        //private SldWorks _SwApp;
-
         /// <summary>
         /// Метод проверяющий изменилось ли свойство
         /// </summary>
@@ -35,34 +28,43 @@ namespace SolidWorks_2016.ViewModel
         public MainViewModel()
         {
             var OpenOrClose = new OpenOrCloseSWModel();
-            ClickCommandOpenSolidWorks = new Command(arg => OpenOrClose.OpenSW());
+            ClickCommandOpenSolidWorks = new Command(arg => { OpenOrClose.OpenSW(); IsEnabledOpenSW = true; });
             ClickCommandCloseSolidWorks = new Command(arg => OpenOrClose.CloseSW());
-
-            ParametrsEndHead = new ParametrsEndHeadModel
+            
+            InputParametr = new InputParametrs
             {
-                RadiusFirstCylinder = "0",
-                RadiusSecondCylinder = "0",
+                SizeOfWorkingSurface = "0",
+                SizeAttachmentPortion = "0",
                 HeightFirstCylinder = "0",
                 HeightSecondCylinder = "0",
-                DeepExtrusionFirstCylinder = "0",
-                WallThickness="3"
+                DepthOfWorkSurface = "0",
+                WallThicknessFirstCylinder = "1",
+                WallThicknessSecondCylinder = "1"
             };
-                ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(OpenOrClose.SwApp));
-            
+            ParametrsForBuilder parametrsForBuilder = new ParametrsForBuilder();
+            BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
+            ClickCommandBuilder = new Command(arg => {
+                if(InputParametr.InspectionInputParametrs() != null)
+                {
+                    parametrsForBuilder = InputParametr.InspectionInputParametrs();
+                    buildEndHeadFigure.InputParametrsForBuilding(parametrsForBuilder);
+                    buildEndHeadFigure.BuildEndHead(OpenOrClose.SwApp);
+                }
+            });            
         }
 
-        private ParametrsEndHeadModel _ParametrsEndHead;
-        public ParametrsEndHeadModel ParametrsEndHead
+        private InputParametrs _inputParametr;
+        public InputParametrs InputParametr
         {
             get
             {
-                return _ParametrsEndHead;
+                return _inputParametr;
             }
             set
             {
                 try
                 {
-                    _ParametrsEndHead = value;
+                    _inputParametr = value;
                 }
                 catch(CellFormatException exception)
                 {
@@ -91,6 +93,7 @@ namespace SolidWorks_2016.ViewModel
         /// Открыт ли солид воркс
         /// </summary>
         public ICommand IsEnabledCommandOpenSW { get; set; }
+
         private bool _isEnabledOpenSW;
         public bool IsEnabledOpenSW
         {

@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\ParametrsForBuilder.cs" />
     <Compile Include="Model\MyException\CellDeepExtrusionException.cs" />
     <Compile Include="Model\MyException\CellFormatException.cs" />
     <Compile Include="Model\MyException\CellOutOfRangeException.cs" />
@@ -88,8 +89,10 @@
     <Compile Include="Model\MyException\CellRadiusException.cs" />
     <Compile Include="Model\MyException\CellWallThicknessException.cs" />
     <Compile Include="Model\OpenOrCloseSWModel.cs" />
-    <Compile Include="Model\ParametrsEndHeadModel.cs" />
     <Compile Include="Model\BuilderFigure\RoundingModel.cs" />
+    <Compile Include="Model\BuildEndHeadFigure.cs" />
+    <Compile Include="ViewModel\InputParametrs.cs" />
+    <Compile Include="ViewModel\ParametrRule.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />
     <Compile Include="View\PlaginWindowView.xaml.cs">
@@ -123,7 +126,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="drawing\222.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

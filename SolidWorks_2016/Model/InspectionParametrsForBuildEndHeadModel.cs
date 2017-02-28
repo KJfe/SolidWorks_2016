@@ -9,27 +9,13 @@ namespace SolidWorks_2016.Model
 {
     class InspectionParametrsForBuildEndHeadModel
     {
-        public static void Parametrs(double radiusFerstCylinder, double heightFerstCylinder, 
-            double radiusSecondCylinder, double heightSecondCylinder, 
-            double wallThicknessFerstCylinder, double wallThicknessSecondCylinder, 
-            double deepExtrusionFirstCylinder)
+        public static void Parametrs(double heightFirstCylinder, double depthOfWorkSurface)
         {
-            if (radiusFerstCylinder < radiusSecondCylinder)
-            {
-                throw new CellRadiusException();
-            }
-            if (wallThicknessFerstCylinder < 1)
-            {
-                throw new CellWallThicknessException("рабочей поверхности торцевой головки");
-            }
-            if (wallThicknessSecondCylinder < 1)
-            {
-                throw new CellWallThicknessException("крепежной поверхности торцевой гловки");
-            }
-            if (deepExtrusionFirstCylinder > heightFerstCylinder)
+            if (heightFirstCylinder < depthOfWorkSurface)
             {
                 throw new CellDeepExtrusionException();
             }
+            
         }
     }
 }

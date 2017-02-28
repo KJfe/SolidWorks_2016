@@ -46,9 +46,13 @@
 
 
                 //проверяем высоту первого цилиндра что бы была меньше глубины выреза под рабочубю поверхность
-                InspectionParametrsForBuildEndHeadModel.Parametrs(
+                InspectionParametrsForBuildEndHeadModel.InspectionHeightAndDeep(
                     heightFirstCylinder,
                     depthOfWorkSurface);
+                //проверяем радиус целиндров
+                InspectionParametrsForBuildEndHeadModel.InspectionFirstAndSecondRadius(
+                    radiusFirstCylinder,
+                    radiusSecondCylinder);
 
                 //передача параметров в класс для хранения 
                 List<double> ParametrsList= new List<double>();
@@ -65,6 +69,12 @@
             catch (CellDeepExtrusionException cellDeepExtrusionException)
             {
                 MessageBox.Show(cellDeepExtrusionException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                inputParametrsForBuilder = null;
+                return null;
+            }
+            catch (CellRadiusException сellRadiusException)
+            {
+                MessageBox.Show(сellRadiusException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 inputParametrsForBuilder = null;
                 return null;
             }

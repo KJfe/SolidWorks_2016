@@ -175,29 +175,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Button
-            Grid.Row="8"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Width="90"
-            Height="20"
-            Margin="56,10,0,47"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Command="{Binding ClickCommandBuilder}"
-            Content="Build EndHead"
-            IsEnabled="{Binding IsEnabledOpenSW}" />
-        <Button
-            Grid.Row="8"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Width="97"
-            Height="20"
-            Margin="0,10,0,47"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Command="{Binding ClickCommandOpenSolidWorks}"
-            Content="Open SolidWorks" />
+
         <TextBox
             Grid.Row="5"
             Grid.Column="2"
@@ -273,6 +251,29 @@
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
+        <Button
+            Grid.Row="8"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Width="90"
+            Height="20"
+            Margin="56,10,0,47"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Command="{Binding ClickCommandBuilder}"
+            Content="Build EndHead"
+            IsEnabled="{Binding IsEnabledOpenSW}" />
+        <Button
+            Grid.Row="8"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Width="97"
+            Height="20"
+            Margin="0,10,0,47"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Command="{Binding ClickCommandOpenSolidWorks}"
+            Content="Open SolidWorks" />
         <TextBlock
             Grid.Row="7"
             Grid.Column="1"

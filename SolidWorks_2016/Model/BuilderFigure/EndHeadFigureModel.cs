@@ -8,9 +8,9 @@
     /// </summary>
     class EndHeadFigureModel
     {
-         private SldWorks _SwApp;
+        private SldWorks _SwApp;
 
-         public EndHeadFigureModel(SldWorks SwApp)
+        public EndHeadFigureModel(SldWorks SwApp)
         {
             _SwApp = SwApp;
         }
@@ -41,6 +41,12 @@
         {
             var roundingEdge = new RoundingModel(swModel, radiiArray0, dist2Array0, conicRhosArray0, setBackArray0, pointArray0, pointRhoArray0);
             swModel = roundingEdge.Build;
+        }
+
+        public void SaveDetail(string path)
+        {
+            var saveDetail = new SaveDetail(swModel ,path);
+            swModel = saveDetail.Build;
         }
     }
 }

@@ -9,13 +9,20 @@ namespace SolidWorks_2016.Model
 {
     class InspectionParametrsForBuildEndHeadModel
     {
-        public static void Parametrs(double heightFirstCylinder, double depthOfWorkSurface)
+        public static void InspectionHeightAndDeep(double heightFirstCylinder, double depthOfWorkSurface)
         {
             if (heightFirstCylinder < depthOfWorkSurface)
             {
                 throw new CellDeepExtrusionException();
+            }    
+        }
+
+        public static void InspectionFirstAndSecondRadius(double firstRadius, double secondRadius)
+        {
+            if (firstRadius < secondRadius)
+            {
+                throw new CellRadiusException();
             }
-            
         }
     }
 }

@@ -19,6 +19,10 @@
         private double _radiusForSizeAttachmentPortion;
         private Point3D _xyz = new Point3D(0, 0, 0);
 
+        /// <summary>
+        /// Конструктор принимающий параметры
+        /// </summary>
+        /// <param name="parametrForBuilder"></param>
         public void InputParametrsForBuilding(ParametrsForBuilder parametrForBuilder)
         {
             List<double> parametrs = parametrForBuilder.Parametrs;
@@ -30,8 +34,12 @@
             _radiusForSizeAttachmentPortion = parametrs[5];
             _depthOfWorkSurface = parametrs[6];
         }
-       
-
+        
+        /// <summary>
+        /// Строитель торцевой головки
+        /// </summary>
+        /// <param name="SwApp"></param>
+        /// <returns></returns>
         public bool BuildEndHead(SldWorks SwApp)
         {
             if(SwApp!=null)
@@ -42,6 +50,7 @@
                 SensingHead.BuildNewCylinder(_radiusSecondCylinder, _heightSecondCylinder, "Спереди", "PLANE", _xyz, false);
                 SensingHead.BuildExtrusion(true, _radiusForSizeOfWorkingSurface, 6, _depthOfWorkSurface, true);
                 SensingHead.BuildExtrusion(true, _radiusForSizeAttachmentPortion, 4, _heightSecondCylinder, true);
+                SensingHead.SaveDetail("c:\temp");
                 return true;
             }
             return false;

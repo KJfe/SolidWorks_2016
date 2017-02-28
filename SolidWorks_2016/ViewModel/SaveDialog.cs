@@ -17,6 +17,7 @@ namespace SolidWorks_2016.ViewModel
             saveFileDialog.FileName = "Detail1";
             saveFileDialog.ShowDialog();
             return saveFileDialog.FileName;
+
         }
     }
 }

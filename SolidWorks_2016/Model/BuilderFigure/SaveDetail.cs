@@ -23,7 +23,7 @@
         {
             get
             {
-                if (_path == "")
+                if ((_path != "") && (_path != null)) 
                 {
                     _swModel.SaveAs4(_path, 0, 2, 0, 0);
                 }

@@ -8,7 +8,7 @@ namespace SolidWorks_2016.Model.MyException
 {
     class CellDeepExtrusionException:Exception
     {
-        public CellDeepExtrusionException() : base(string.Format("Глубина выреза рабочей поверхности"))
+        public CellDeepExtrusionException() : base(string.Format("Глубина выреза рабочей поверхности не может быть больше высоты первого цилиндра"))
         {
 
         }

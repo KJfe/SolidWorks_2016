@@ -5,12 +5,13 @@
     using SolidWorks_2016.Model;
     using System.Windows.Media.Media3D;
     using System;
+    using System.Windows.Controls;
 
     public class InputParametrs
     {
         //Сигма 0,04 мм 
-        const double sigma = 0.04;
-        const double mm = 1000;
+        private const double sigma = 0.04/mm;
+        private const double mm = 1000;
 
         /// <summary>
         /// Расчет необходимых параметров для построения и передача их
@@ -18,7 +19,7 @@
         /// <param name="SwApp"></param>
         public ParametrsForBuilder InspectionInputParametrs()
         {
-
+            ParametrsForBuilder inputParametrsForBuilder = new ParametrsForBuilder();
             try
             {
                 //расчет необходимых параметров
@@ -43,17 +44,12 @@
                 depthOfWorkSurface = _depthOfWorkSurface/mm;
 
 
+                //проверяем высоту первого цилиндра что бы была меньше глубины выреза под рабочубю поверхность
+                InspectionParametrsForBuildEndHeadModel.Parametrs(
+                    heightFirstCylinder,
+                    depthOfWorkSurface);
 
-                /*InspectionParametrsForBuildEndHeadModel.Parametrs(
-                    FirstRadius,
-                    _heightFirstCylinder, 
-                    SecondRadius, 
-                    HeightSecondCylinder,
-                    _wallThicknessFirstCylinder, 
-                    _wallThicknessFirstCylinder, 
-                    DeepExtrusion);*/
                 //передача параметров в класс для хранения 
-                ParametrsForBuilder inputParametrsForBuilder = new ParametrsForBuilder();
 
                 inputParametrsForBuilder.InputParametrsFigure(
                     radiusFirstCylinder,
@@ -68,20 +64,10 @@
             catch (CellDeepExtrusionException cellDeepExtrusionException)
             {
                 MessageBox.Show(cellDeepExtrusionException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                return null;
-            }
-            catch (CellRadiusException cellRadiusException)
-            {
-                MessageBox.Show(cellRadiusException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                return null;
-            }
-            catch (CellWallThicknessException cellWallThicknessException)
-            {
-                MessageBox.Show(cellWallThicknessException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                inputParametrsForBuilder = null;
                 return null;
             }
         }
-
 
         /// <summary>
         /// Толщена стенки первого цилиндра

@@ -4,13 +4,12 @@ using System.Windows;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows.Media.Media3D;
+using System.Windows.Controls;
 
 namespace SolidWorks_2016.ViewModel
 {
     class MainViewModel: INotifyPropertyChanged
     {
-        //private SldWorks _SwApp;
-
         /// <summary>
         /// Метод проверяющий изменилось ли свойство
         /// </summary>
@@ -29,9 +28,9 @@ namespace SolidWorks_2016.ViewModel
         public MainViewModel()
         {
             var OpenOrClose = new OpenOrCloseSWModel();
-            ClickCommandOpenSolidWorks = new Command(arg => OpenOrClose.OpenSW());
+            ClickCommandOpenSolidWorks = new Command(arg => { OpenOrClose.OpenSW(); IsEnabledOpenSW = true; });
             ClickCommandCloseSolidWorks = new Command(arg => OpenOrClose.CloseSW());
-
+            
             InputParametr = new InputParametrs
             {
                 SizeOfWorkingSurface = "0",
@@ -45,26 +44,27 @@ namespace SolidWorks_2016.ViewModel
             ParametrsForBuilder parametrsForBuilder = new ParametrsForBuilder();
             BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
             ClickCommandBuilder = new Command(arg => {
-                parametrsForBuilder = InputParametr.InspectionInputParametrs();
-                buildEndHeadFigure.ff(parametrsForBuilder);
-                buildEndHeadFigure.BuildEndHead(OpenOrClose.SwApp);
-            });
-            //ClickCommandBuilder = new Command(arg => ParametrsEndHead.BuildEndHead(OpenOrClose.SwApp));
-            
+                if(InputParametr.InspectionInputParametrs() != null)
+                {
+                    parametrsForBuilder = InputParametr.InspectionInputParametrs();
+                    buildEndHeadFigure.InputParametrsForBuilding(parametrsForBuilder);
+                    buildEndHeadFigure.BuildEndHead(OpenOrClose.SwApp);
+                }
+            });            
         }
 
-        private InputParametrs _ParametrsEndHead;
+        private InputParametrs _inputParametr;
         public InputParametrs InputParametr
         {
             get
             {
-                return _ParametrsEndHead;
+                return _inputParametr;
             }
             set
             {
                 try
                 {
-                    _ParametrsEndHead = value;
+                    _inputParametr = value;
                 }
                 catch(CellFormatException exception)
                 {
@@ -93,6 +93,7 @@ namespace SolidWorks_2016.ViewModel
         /// Открыт ли солид воркс
         /// </summary>
         public ICommand IsEnabledCommandOpenSW { get; set; }
+
         private bool _isEnabledOpenSW;
         public bool IsEnabledOpenSW
         {

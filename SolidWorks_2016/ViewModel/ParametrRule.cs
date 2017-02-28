@@ -8,24 +8,34 @@ namespace SolidWorks_2016.ViewModel
     /// </summary>
     public class ParametrRule : ValidationRule
     {
-        private double min = 1;
-        private double max = Double.MaxValue;
+        private double _min = 1;
+        private double _max = Double.MaxValue;
         /// <summary>
         /// Минимальное значение для TextBox
         /// </summary>
         public double Min
         {
-            get { return min; }
-            set { min = value; }
+            get { return _min; }
+            set { _min = value; }
         }
         /// <summary>
         /// Максимальное значение для TextBox
         /// </summary>
         public double Max
         {
-            get { return max; }
-            set { max = value; }
+            get { return _max; }
+            set { _max = value; }
         }
+        /// <summary>
+        /// свойство принимающее имя ячейки
+        /// </summary>
+        private string _propertyName;
+        public string PropertyName
+        {
+            get { return _propertyName; }
+            set { _propertyName = value; }
+        }
+
         /// <summary>
         /// Проверям TextBox и возвращаем Текст ошибки
         /// </summary>
@@ -42,15 +52,29 @@ namespace SolidWorks_2016.ViewModel
             catch
             {
                 return new ValidationResult(false, "Недопустимые символы.");
-            }        
-            if ((_result <= 0) || (_result > Max))
+            }
+
+            if (_result <= 0)
             {
-                return new ValidationResult(false, "Значение не может быть меньше 0 и больше"+ Max +".");
+                return new ValidationResult(false, PropertyName + " не может быть <0.");
             }
             else
             {
-                return new ValidationResult(true, null);
+                if (_result > Max)
+                {
+                    return new ValidationResult(false, PropertyName + " не может быть больше " + Max + ".");
+                }
+
+                else
+                {
+                    return ValidationResult.ValidResult;
+                }
             }
+                
+            
+
+
+            
         }
 
     }

@@ -4,40 +4,115 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:myns="clr-namespace:SolidWorks_2016.ViewModel"
     Title="MainWindow"
-    Width="400"
-    Height="300">
+    Width="306"
+    Height="386"
+    ResizeMode="CanMinimize">
+    <Window.Resources>
+        <ControlTemplate x:Key="validationErrorTemplate">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                    <Grid Width="12" Height="12">
+                        <Ellipse
+                            Width="12"
+                            Height="12"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Fill="Red" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="8"
+                            FontWeight="Heavy"
+                            Foreground="White"
+                            TextAlignment="Center"
+                            ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            X
+                        </TextBlock>
+                    </Grid>
+                    <TextBlock
+                        Margin="2,0,0,0"
+                        Foreground="Red"
+                        Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                </StackPanel>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner" />
+            </DockPanel>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="164" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <TextBlock
-            Margin="10,10,0,0"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="13"
+            Height="16"
+            Margin="0,1,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="S1" />
         <TextBlock
-            Margin="8,50,0,0"
+            Grid.Row="3"
+            Grid.Column="1"
+            Width="13"
+            Height="16"
+            Margin="0,3,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="E1" />
         <TextBlock
-            Margin="8,29,0,0"
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="15"
+            Height="16"
+            Margin="0,2,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="H1" />
         <TextBlock
-            Margin="10,73,0,0"
+            Grid.Row="4"
+            Grid.Column="1"
+            Width="13"
+            Height="16"
+            Margin="0,4,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="S2" />
         <TextBlock
-            Margin="12,94,0,0"
+            Grid.Row="5"
+            Grid.Column="1"
+            Width="15"
+            Height="16"
+            Margin="0,5,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="H2" />
 
         <TextBox
-            Width="120"
-            Margin="52,8,0,0"
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="60             "
+            Height="18"
+            Margin="0,1,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
+
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
@@ -45,17 +120,22 @@
                     Path="InputParametr.SizeOfWorkingSurface"
                     UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules>
-                        <myns:ParametrRule Max="250" />
+                        <myns:ParametrRule Max="250" PropertyName="S1" />
                         <ExceptionValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
+
             </TextBox.Text>
         </TextBox>
         <TextBox
-            Width="120"
-            Margin="52,27,0,0"
+            Grid.Row="2"
+            Grid.Column="2"
+            Width="60"
+            Height="18"
+            Margin="0,2,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
@@ -63,7 +143,7 @@
                     Path="InputParametr.HeightFirstCylinder"
                     UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules>
-                        <myns:ParametrRule Max="250" />
+                        <myns:ParametrRule Max="250" PropertyName="H1" />
                         <ExceptionValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
@@ -71,28 +151,37 @@
         </TextBox>
 
         <TextBox
-            Width="120"
-            Margin="52,50,0,0"
+            Grid.Row="3"
+            Grid.Column="2"
+            Width="60"
+            Height="18"
+            Margin="0,3,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
                     NotifyOnValidationError="True"
                     Path="InputParametr.DepthOfWorkSurface"
-                    UpdateSourceTrigger="LostFocus">
+                    UpdateSourceTrigger="LostFocus"
+                    ValidatesOnExceptions="True">
                     <Binding.ValidationRules>
-                        <myns:ParametrRule Max="250" />
+                        <myns:ParametrRule Max="250" PropertyName="E1" />
                         <ExceptionValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
         <TextBox
-            Width="120"
-            Margin="52,73,0,0"
+            Grid.Row="4"
+            Grid.Column="2"
+            Width="60"
+            Height="18"
+            Margin="0,4,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
@@ -100,31 +189,44 @@
                     Path="InputParametr.SizeAttachmentPortion"
                     UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules>
-                        <myns:ParametrRule Max="250" />
+                        <myns:ParametrRule Max="250" PropertyName="S2" />
                         <ExceptionValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
         <Button
-            Width="110"
-            Margin="272,239,0,0"
+            Grid.Row="8"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Width="90"
+            Height="20"
+            Margin="77,10,0,47"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Command="{Binding ClickCommandBuilder}"
-            Content="Build EndHead" />
+            Content="Build EndHead"
+            IsEnabled="{Binding IsEnabledOpenSW}" />
         <Button
-            Width="110"
-            Margin="10,177,0,0"
+            Grid.Row="8"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Width="97"
+            Height="20"
+            Margin="0,10,0,47"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Command="{Binding ClickCommandOpenSolidWorks}"
             Content="Open SolidWorks" />
         <TextBox
-            Width="120"
-            Margin="52,96,0,0"
+            Grid.Row="5"
+            Grid.Column="2"
+            Width="60"
+            Height="18"
+            Margin="0,5,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
@@ -132,78 +234,89 @@
                     Path="InputParametr.HeightSecondCylinder"
                     UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules>
-                        <myns:ParametrRule Max="250" />
+                        <myns:ParametrRule Max="250" PropertyName="H2" />
                         <ExceptionValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
         <Button
-            Width="110"
-            Margin="144,239,0,0"
+            Grid.Row="8"
+            Grid.Column="3"
+            Width="75"
+            Height="20"
+            Margin="81,10,0,47"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Command="{Binding ClickCommandCloseSolidWorks}"
             Content="Close" />
         <TextBox
-            Width="120"
-            Margin="52,119,0,0"
+            Grid.Row="6"
+            Grid.Column="2"
+            Width="60"
+            Height="18"
+            Margin="0,6,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
                     NotifyOnValidationError="True"
-                    Path="InputParametr.DepthOfWorkSurface"
+                    Path="InputParametr.WallThicknessFirstCylinder"
                     UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules>
-                        <myns:ParametrRule Max="150" />
+                        <myns:ParametrRule Max="50" PropertyName="W1" />
                         <ExceptionValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
         <TextBlock
-            Margin="10,121,0,0"
+            Grid.Row="6"
+            Grid.Column="1"
+            Width="18"
+            Height="16"
+            Margin="0,6,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Text="W1" />
         <TextBox
-            Width="120"
-            Margin="52,119,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <Binding
-                Mode="TwoWay"
-                NotifyOnValidationError="True"
-                Path="InputParametr.WallThicknessFirstCylinder"
-                UpdateSourceTrigger="LostFocus">
-                <Binding.ValidationRules>
-                    <myns:ParametrRule Max="150" />
-                    <ExceptionValidationRule />
-                </Binding.ValidationRules>
-            </Binding>
-        </TextBox>
-        <TextBlock
-            Margin="12,142,0,0"
+            Grid.Row="7"
+            Grid.Column="2"
+            Width="60"
+            Height="18"
+            Margin="0,7,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="W2" />
-        <TextBox
-            Width="120"
-            Margin="52,142,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            Validation.ErrorTemplate="{StaticResource validationErrorTemplate}">
             <Binding
                 Mode="TwoWay"
                 NotifyOnValidationError="True"
                 Path="InputParametr.WallThicknessSecondCylinder"
                 UpdateSourceTrigger="LostFocus">
                 <Binding.ValidationRules>
-                    <myns:ParametrRule Max="150" />
+                    <myns:ParametrRule Max="50" PropertyName="W2" />
                     <ExceptionValidationRule />
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
+        <TextBlock
+            Grid.Row="7"
+            Grid.Column="1"
+            Width="18"
+            Height="16"
+            Margin="0,7,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="W2" />
+        <Image
+            x:Name="image"
+            Grid.RowSpan="8"
+            Grid.Column="3"
+            Height="285"
+            VerticalAlignment="Center"
+            Source="/drawing/222.jpg" />
+
     </Grid>
 </Window>

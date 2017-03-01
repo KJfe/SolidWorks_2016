@@ -7,22 +7,24 @@ using SolidWorks_2016.Model.MyException;
 
 namespace SolidWorks_2016.Model
 {
-    class InspectionParametrsForBuildEndHeadModel
+    public class InspectionParametrsForBuildEndHeadModel
     {
-        public static void InspectionHeightAndDeep(double heightFirstCylinder, double depthOfWorkSurface)
+        public static bool InspectionHeightAndDeep(double heightFirstCylinder, double depthOfWorkSurface)
         {
             if (heightFirstCylinder < depthOfWorkSurface)
             {
                 throw new CellDeepExtrusionException();
-            }    
+            }
+            else return true;
         }
 
-        public static void InspectionFirstAndSecondRadius(double firstRadius, double secondRadius)
+        public static bool InspectionFirstAndSecondRadius(double firstRadius, double secondRadius)
         {
             if (firstRadius < secondRadius)
             {
                 throw new CellRadiusException();
             }
+            else return true;
         }
     }
 }

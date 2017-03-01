@@ -55,9 +55,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Model\InspectionParametrModelTest.cs" />
-    <Compile Include="Model\ParametrsEndHeadModelTest.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Model\InspectionParametrsForBuildEndHeadModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\InputParametrsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -67,6 +67,9 @@
       <Project>{d5bc773b-45d5-4dd1-8048-6f3a5b846aa4}</Project>
       <Name>SolidWorks_2016</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

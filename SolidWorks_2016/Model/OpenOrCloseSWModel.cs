@@ -29,7 +29,7 @@ namespace SolidWorks_2016.Model
             Process[] processes = Process.GetProcessesByName("SLDWORKS");
             foreach (Process process in processes)
             {
-                return true;
+                //return true;
             }
             return false;
         }

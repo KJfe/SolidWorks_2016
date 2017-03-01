@@ -7,7 +7,7 @@ using SolidWorks_2016.Model.MyException;
 
 namespace SolidWorks_2016.Model
 {
-    class InspectionParametrModel
+    public class InspectionParametrModel
     {
         public static double Parametr(string edit, string editDesc)
         {

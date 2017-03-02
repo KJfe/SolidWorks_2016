@@ -32,7 +32,7 @@ namespace SolidWorks_2016.ViewModel
             SaveDialog saveDialog = new SaveDialog();
 
             ClickCommandOpenSolidWorks = new Command(arg => { openOrClose.OpenSW(); IsEnabledOpenSW = true; });
-            ClickCommandCloseSolidWorks = new Command(arg => { openOrClose.CloseSW();app.Shutdown();});
+            ClickCommandCloseSolidWorks = new Command(arg => { openOrClose.CloseSW(); app.Shutdown(); });
             
             InputParametr = new InputParametrs
             {
@@ -44,18 +44,17 @@ namespace SolidWorks_2016.ViewModel
                 WallThicknessFirstCylinder = "1",
                 WallThicknessSecondCylinder = "1"
             };
-            ParametrsForBuilder parametrsForBuilder = new ParametrsForBuilder();
+            //ParametrsForBuilder parametrsForBuilder = new ParametrsForBuilder();
             BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
             ClickCommandBuilder = new Command(arg => {
-                //свойство вилимости кнопки Builder
+                //свойство видимости кнопки Builder
                 //IsEnabledOpenSW = !openOrClose.IsOpenSW();
                 if ((openOrClose.IsOpenSW()!=true)&&(InputParametr.InspectionInputParametrs() != null))
                 {
-                    parametrsForBuilder = InputParametr.InspectionInputParametrs();
-                    buildEndHeadFigure.InputParametrsForBuilding(parametrsForBuilder);
+                    //parametrsForBuilder = InputParametr.InspectionInputParametrs();
+                    buildEndHeadFigure.InputParametrsForBuilding(InputParametr.InspectionInputParametrs());
                     buildEndHeadFigure.BuildEndHead(openOrClose.SwApp, saveDialog.SaveDialogFile());
-                }
-                
+                }              
             });            
         }
 

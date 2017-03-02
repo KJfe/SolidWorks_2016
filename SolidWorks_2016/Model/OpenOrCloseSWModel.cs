@@ -1,4 +1,4 @@
-﻿using SolidWorks.Interop.sldworks;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,8 @@ using System.Windows;
 
 namespace SolidWorks_2016.Model
 {
-    class OpenOrCloseSWModel
+    using SolidWorks.Interop.sldworks;
+    public class OpenOrCloseSWModel
     {
         /// <summary>
         /// свойство передающее 

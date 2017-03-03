@@ -9,7 +9,6 @@ namespace UnitTests.Model
     {
         [Test]
         [TestCase(true, "17", "10", "20", "12", "18", "1", "2", "C:\\test\\t1.SLDPRT", TestName = "Тестирование при корректных значениях параметров")]
-       // [TestCase(true, "17", "10", "20", "12", "18", "1", "2", "C:\\test\\t1.SLDPRT", TestName = "Тестирование при корректных значениях параметров222")]
         public void BuildEndHead(bool res,
             string sizeOfWorkingSurface,
             string sizeAttachmentPortion,
@@ -35,7 +34,9 @@ namespace UnitTests.Model
             BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
             buildEndHeadFigure.InputParametrsForBuilding(inputParametrs.InspectionInputParametrs());
             Assert.AreEqual(res, buildEndHeadFigure.BuildEndHead(openOrClose.SwApp, path));
+            openOrClose.CloseSW();
         }
-        
+     
+           
     }
 }

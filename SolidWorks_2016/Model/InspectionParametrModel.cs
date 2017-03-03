@@ -1,14 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SolidWorks_2016.Model.MyException;
 
 namespace SolidWorks_2016.Model
 {
+    /// <summary>
+    /// Класс проверяющий корректность введенных данных
+    /// </summary>
     public class InspectionParametrModel
     {
+        /// <summary>
+        /// метод проверяющий данные, 
+        /// что бы не были меньше или равны 0 
+        /// и были корректны
+        /// </summary>
+        /// <param name="edit"></param>
+        /// <param name="editDesc"></param>
+        /// <returns></returns>
         public static double Parametr(string edit, string editDesc)
         {
             double doubleEdit = 0;
@@ -26,8 +33,6 @@ namespace SolidWorks_2016.Model
                 throw new CellOutOfRangeException(editDesc);
             }
             return doubleEdit;
-
         }
-
     }
 }

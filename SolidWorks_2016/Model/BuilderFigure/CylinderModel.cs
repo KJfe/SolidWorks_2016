@@ -8,14 +8,26 @@
     /// </summary>
     class CylinderModel:IBuildFigureModel
     {
+        #region Private Fields
         private Point3D _xyz;
         private IModelDoc2 _swModel;
         private double _radius;
         private double _height;
         private string _name;
         private string _type;
-        private bool _dir;
+        private bool _dir; 
+        #endregion
 
+        /// <summary>
+        /// Конструктор принимающий параметры
+        /// </summary>
+        /// <param name="radius"></param>
+        /// <param name="height"></param>
+        /// <param name="swModel"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="xyz"></param>
+        /// <param name="dir"></param>
         public CylinderModel(double radius, double height, IModelDoc2 swModel, string name, string type, Point3D xyz, bool dir)
         {
             _radius = radius;
@@ -26,7 +38,9 @@
             _xyz = xyz;
             _dir = dir;
         }
-
+        /// <summary>
+        /// Реализация интефейса
+        /// </summary>
         public IModelDoc2 Build
         {
             get

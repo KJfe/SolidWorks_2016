@@ -6,14 +6,24 @@
     /// </summary>
     class ExtrusionModel:IBuildFigureModel
     {
+        #region Private Fields
         private IModelDoc2 _swModel;
         private double _radiusPolygon;
         private int _numberPolygon;
         private double _deepPolygon;
         private bool _dir;
-        private bool _inscribed;
+        private bool _inscribed; 
+        #endregion
 
-
+        /// <summary>
+        /// метод делающий вырез многоугольника
+        /// </summary>
+        /// <param name="swModel"></param>
+        /// <param name="dir"></param>
+        /// <param name="radiusPolygon"></param>
+        /// <param name="numberPolygon"></param>
+        /// <param name="deepPolygon"></param>
+        /// <param name="inscribed"></param>
         public ExtrusionModel(IModelDoc2 swModel, bool dir, double radiusPolygon, int numberPolygon, double deepPolygon, bool inscribed)
         {
             _swModel = swModel;
@@ -23,7 +33,9 @@
             _deepPolygon = deepPolygon;
             _inscribed = inscribed;
         }
-
+        /// <summary>
+        /// реализация интефейса
+        /// </summary>
         public IModelDoc2 Build
         {
             get

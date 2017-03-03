@@ -1,29 +1,33 @@
 ﻿namespace SolidWorks_2016.ViewModel
 {
     using System.Windows;
-    using SolidWorks_2016.Model.MyException;
-    using SolidWorks_2016.Model;
+    using Model.MyException;
+    using Model;
     using System.Windows.Media.Media3D;
-    using System;
-    using System.Windows.Controls;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Класс принимающий параметры со View
+    /// </summary>
     public class InputParametrs
     {
+        #region Private Fields
         //Сигма 0,04 мм 
-        private const double sigma = 0.04/mm;
-        private const double mm = 1000;
+        private const double sigma = 0.04 / mm;
+        private const double mm = 1000; 
+        #endregion
 
         /// <summary>
         /// Расчет необходимых параметров для построения и передача их
         /// </summary>
         /// <param name="SwApp"></param>
-        public ParametrsForBuilder InspectionInputParametrs()
+        public List<double> InspectionInputParametrs()
         {
-            ParametrsForBuilder inputParametrsForBuilder = new ParametrsForBuilder();
+            List<double> parametrsList = new List<double>();
             try
             {
                 //расчет необходимых параметров
+                #region OutPut Parametrs
                 double radiusForSizeOfWorkingSurface;
                 double radiusForSizeAttachmentPortion;
                 double radiusFirstCylinder;
@@ -32,7 +36,8 @@
                 double heightSecondCylinder;
 
                 double depthOfWorkSurface;
-                Point3D xyz = new Point3D(0, 0, 0);
+                Point3D xyz = new Point3D(0, 0, 0); 
+                #endregion
 
                 radiusForSizeOfWorkingSurface = (_sizeOfWorkingSurface + sigma) / (mm * 2);
                 radiusForSizeAttachmentPortion = (_sizeAttachmentPortion + sigma) / (mm * 2);
@@ -55,27 +60,25 @@
                     radiusSecondCylinder);
 
                 //передача параметров в класс для хранения 
-                List<double> ParametrsList= new List<double>();
-                ParametrsList.Add(radiusFirstCylinder);
-                ParametrsList.Add(radiusSecondCylinder);
-                ParametrsList.Add(heightFirstCylinder);
-                ParametrsList.Add(heightSecondCylinder);
-                ParametrsList.Add(radiusForSizeOfWorkingSurface);
-                ParametrsList.Add(radiusForSizeAttachmentPortion);
-                ParametrsList.Add(depthOfWorkSurface);
-                inputParametrsForBuilder.Parametrs=ParametrsList;
-                return inputParametrsForBuilder;
+                parametrsList.Add(radiusFirstCylinder);
+                parametrsList.Add(radiusSecondCylinder);
+                parametrsList.Add(heightFirstCylinder);
+                parametrsList.Add(heightSecondCylinder);
+                parametrsList.Add(radiusForSizeOfWorkingSurface);
+                parametrsList.Add(radiusForSizeAttachmentPortion);
+                parametrsList.Add(depthOfWorkSurface);
+                return parametrsList;
             }
             catch (CellDeepExtrusionException cellDeepExtrusionException)
             {
                 MessageBox.Show(cellDeepExtrusionException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                inputParametrsForBuilder = null;
+                parametrsList = null;
                 return null;
             }
             catch (CellRadiusException сellRadiusException)
             {
                 MessageBox.Show(сellRadiusException.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                inputParametrsForBuilder = null;
+                parametrsList = null;
                 return null;
             }
         }

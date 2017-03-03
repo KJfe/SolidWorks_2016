@@ -1,15 +1,16 @@
 ﻿namespace SolidWorks_2016.Model
 {
-    using System;
-    using System.Windows;
     using SolidWorks_2016.Model.BuilderFigure;
     using SolidWorks.Interop.sldworks;
-    using SolidWorks_2016.Model.MyException;
     using System.Windows.Media.Media3D;
     using System.Collections.Generic;
-
+    /// <summary>
+    /// класс для постройки детали
+    /// </summary>
     public class BuildEndHeadFigure
     {
+
+        #region Private Fields
         private double _radiusFirstCylinder;
         private double _radiusSecondCylinder;
         private double _heightFirstCylinder;
@@ -17,15 +18,15 @@
         private double _depthOfWorkSurface;
         private double _radiusForSizeOfWorkingSurface;
         private double _radiusForSizeAttachmentPortion;
-        private Point3D _xyz = new Point3D(0, 0, 0);
+        private Point3D _xyz = new Point3D(0, 0, 0); 
+        #endregion
 
         /// <summary>
         /// Конструктор принимающий параметры
         /// </summary>
         /// <param name="parametrForBuilder"></param>
-        public void InputParametrsForBuilding(ParametrsForBuilder parametrForBuilder)
+        public void InputParametrsForBuilding(List<double> parametrs)
         {
-            List<double> parametrs = parametrForBuilder.Parametrs;
             _radiusFirstCylinder = parametrs[0];
             _radiusSecondCylinder = parametrs[1];
             _heightFirstCylinder = parametrs[2];

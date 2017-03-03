@@ -34,7 +34,6 @@ namespace UnitTests.Model
             BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
             buildEndHeadFigure.InputParametrsForBuilding(inputParametrs.InspectionInputParametrs());
             Assert.AreEqual(res, buildEndHeadFigure.BuildEndHead(openOrClose.SwApp, path));
-            openOrClose.CloseSW();
         }
      
            

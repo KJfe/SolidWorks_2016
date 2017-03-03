@@ -7,10 +7,10 @@ namespace SolidWorks_2016.View
     /// </summary>
     public partial class PlaginWindowView : Window
     {
+
         public PlaginWindowView()
         {
             InitializeComponent();
-            
         }
     }
 }

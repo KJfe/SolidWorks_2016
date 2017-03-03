@@ -1,8 +1,13 @@
 ﻿namespace SolidWorks_2016.Model.BuilderFigure
 {
     using SolidWorks.Interop.sldworks;
+    /// <summary>
+    /// Класс строющий сглаживание
+    /// </summary>
     class RoundingModel:IBuildFigureModel
     {
+        #region Private Fields
+
         private IModelDoc2 _swModel;
         private double _radiiArray0;
         private double _dist2Array0;
@@ -12,7 +17,17 @@
         //private  _pointDist2Array0=null;
         private int _pointRhoArray0;
 
-
+        #endregion
+        /// <summary>
+        /// конструктор принимающий параметры
+        /// </summary>
+        /// <param name="swModel"></param>
+        /// <param name="radiiArray0"></param>
+        /// <param name="dist2Array0"></param>
+        /// <param name="conicRhosArray0"></param>
+        /// <param name="setBackArray0"></param>
+        /// <param name="pointArray0"></param>
+        /// <param name="pointRhoArray0"></param>
         public RoundingModel(IModelDoc2 swModel, double radiiArray0, double dist2Array0, double conicRhosArray0, bool setBackArray0, int pointArray0/*, double pointDist2Array0*/, int pointRhoArray0)
         {
             _swModel = swModel;
@@ -24,7 +39,9 @@
             // _pointDist2Array0 = null;
             _pointRhoArray0 = pointRhoArray0;
         }
-
+        /// <summary>
+        /// Реализация интерфейса
+        /// </summary>
         public IModelDoc2 Build
         {
             get

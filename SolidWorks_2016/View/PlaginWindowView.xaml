@@ -92,7 +92,7 @@
             VerticalAlignment="Top"
             Text="H2 (мм)"
             ToolTip="Высота крепежной области" />
-
+        <!--  TextBox принимающий S1  -->
         <TextBox
             Grid.Row="1"
             Grid.Column="2"
@@ -114,6 +114,7 @@
 
             </TextBox.Text>
         </TextBox>
+        <!--  TextBox принимающий H1  -->
         <TextBox
             Grid.Row="2"
             Grid.Column="2"
@@ -134,7 +135,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-
+        <!--  TextBox принимающий E1  -->
         <TextBox
             Grid.Row="3"
             Grid.Column="2"
@@ -156,6 +157,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        <!--  TextBox принимающий S2  -->
         <TextBox
             Grid.Row="4"
             Grid.Column="2"
@@ -176,7 +178,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-
+        <!--  TextBox принимающий H2  -->
         <TextBox
             Grid.Row="5"
             Grid.Column="2"
@@ -197,6 +199,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        <!--  Закрытие и SW и плагина  -->
         <Button
             Grid.Row="8"
             Grid.Column="3"
@@ -207,6 +210,7 @@
             VerticalAlignment="Center"
             Command="{Binding ClickCommandCloseSolidWorks}"
             Content="Close" />
+        <!--  TextBox принимающий W1  -->
         <TextBox
             Grid.Row="6"
             Grid.Column="2"
@@ -234,6 +238,7 @@
             VerticalAlignment="Top"
             Text="W1 (мм)"
             ToolTip="Толщина стенок рабойчей поверхности" />
+        <!--  TextBox принимающий W2  -->
         <TextBox
             Grid.Row="7"
             Grid.Column="2"
@@ -252,6 +257,7 @@
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
+        <!--  Создание детали  -->
         <Button
             Grid.Row="8"
             Grid.Column="2"
@@ -264,6 +270,7 @@
             Command="{Binding ClickCommandBuilder}"
             Content="Build EndHead"
             IsEnabled="{Binding IsEnabledOpenSW}" />
+        <!--  Button для открытия SW  -->
         <Button
             Grid.Row="8"
             Grid.Column="1"

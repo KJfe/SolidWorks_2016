@@ -8,6 +8,9 @@ using System.Windows.Controls;
 
 namespace SolidWorks_2016.ViewModel
 {
+    /// <summary>
+    /// Главный класс ViewModel
+    /// </summary>
     class MainViewModel: INotifyPropertyChanged
     {
         /// <summary>
@@ -44,14 +47,12 @@ namespace SolidWorks_2016.ViewModel
                 WallThicknessFirstCylinder = "1",
                 WallThicknessSecondCylinder = "1"
             };
-            //ParametrsForBuilder parametrsForBuilder = new ParametrsForBuilder();
             BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
             ClickCommandBuilder = new Command(arg => {
                 //свойство видимости кнопки Builder
                 //IsEnabledOpenSW = !openOrClose.IsOpenSW();
                 if ((openOrClose.IsOpenSW()!=true)&&(InputParametr.InspectionInputParametrs() != null))
                 {
-                    //parametrsForBuilder = InputParametr.InspectionInputParametrs();
                     buildEndHeadFigure.InputParametrsForBuilding(InputParametr.InspectionInputParametrs());
                     buildEndHeadFigure.BuildEndHead(openOrClose.SwApp, saveDialog.SaveDialogFile());
                 }              

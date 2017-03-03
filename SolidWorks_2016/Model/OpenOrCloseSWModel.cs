@@ -1,15 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace SolidWorks_2016.Model
+﻿namespace SolidWorks_2016.Model
 {
+    using System;
+    using System.Diagnostics;
     using SolidWorks.Interop.sldworks;
+
+    /// <summary>
+    /// Клаас Открытия/Закрытия SW
+    /// </summary>
     public class OpenOrCloseSWModel
     {
         /// <summary>

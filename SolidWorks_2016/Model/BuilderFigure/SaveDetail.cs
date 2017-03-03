@@ -6,8 +6,10 @@
     /// </summary>
     class SaveDetail:IBuildFigureModel
     {
+        #region Private Fields
         private IModelDoc2 _swModel;
         private string _path;
+        #endregion
 
         /// <summary>
         /// конструктор принимающий параметры
@@ -19,6 +21,10 @@
             _swModel = swModel;
             _path = path;
         }
+
+        /// <summary>
+        /// Реализация интерфейса
+        /// </summary>
         public IModelDoc2 Build
         {
             get

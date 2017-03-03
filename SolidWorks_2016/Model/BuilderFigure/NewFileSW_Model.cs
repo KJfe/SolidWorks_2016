@@ -4,11 +4,17 @@
     /// <summary>
     /// Класс создающий новый документ в SolidWorks
     /// </summary>
-    class NewFileSW_Model:IBuildFigureModel
+    class NewFileSW_Model : IBuildFigureModel
     {
+        #region Private Fields
         private SldWorks _SwApp;
-        private IModelDoc2 _swModel;
-
+        private IModelDoc2 _swModel; 
+        #endregion
+        /// <summary>
+        /// Создани Нового докуента в SW 
+        /// </summary>
+        /// <param name="SwApp"></param>
+        /// <param name="swModel"></param>
         public NewFileSW_Model(SldWorks SwApp, IModelDoc2 swModel)
         {
             _SwApp = SwApp;
@@ -19,7 +25,8 @@
         {
             get
             {
-                _SwApp.NewPart();//создание нового файла в solidworks
+                //создание нового файла в solidworks
+                _SwApp.NewPart();
 
                 _swModel = _SwApp.IActiveDoc2;
 

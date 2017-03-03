@@ -70,11 +70,6 @@ namespace SolidWorks_2016.ViewModel
                     return ValidationResult.ValidResult;
                 }
             }
-                
-            
-
-
-            
         }
 
     }

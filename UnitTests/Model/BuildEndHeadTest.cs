@@ -31,6 +31,7 @@ namespace UnitTests.Model
                 WallThicknessFirstCylinder= wallThicknessFirstCylinder,
                 WallThicknessSecondCylinder= wallThicknessSecondCylinder
             };
+
             BuildEndHeadFigure buildEndHeadFigure = new BuildEndHeadFigure();
             buildEndHeadFigure.InputParametrsForBuilding(inputParametrs.InspectionInputParametrs());
             Assert.AreEqual(res, buildEndHeadFigure.BuildEndHead(openOrClose.SwApp, path));

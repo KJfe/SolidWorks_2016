@@ -21,7 +21,7 @@ namespace UnitTests
         [TestCase(7, "C:\\test\\t7", ".SLDPRT", TestName = "Тестирование при построении 7 документа-модели")]
         [TestCase(8, "C:\\test\\t8", ".SLDPRT", TestName = "Тестирование при построении 8 документа-модели")]
         [TestCase(9, "C:\\test\\t9", ".SLDPRT", TestName = "Тестирование при построении 9 документа-модели")]
-        [TestCase(10,"C:\\test\\t10", ".SLDPRT", TestName = "Тестирование при построении 10 документа-модели")]
+        //[TestCase(10,"C:\\test\\t10", ".SLDPRT", TestName = "Тестирование при построении 10 документа-модели")]
         public void Testing(int count, string path, string sldprt)
         {
             BuildEndHeadTest build = new BuildEndHeadTest();

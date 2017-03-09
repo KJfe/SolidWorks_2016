@@ -31,7 +31,8 @@
             {
                 if ((_path != "") && (_path != null)) 
                 {
-                    _swModel.SaveAs4(_path, 0, 2, 0, 0);
+                    _swModel.SaveAs3(_path, 0, 2);
+                    _swModel = null;
                 }
                 return _swModel;
             }

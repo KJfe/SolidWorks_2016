@@ -35,6 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SolidWorks.Interop.sldworks">
+      <HintPath>..\packages\SolidWorks.Interop.sldworks.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SolidWorks.Interop.swcommands">
+      <HintPath>..\packages\SolidWorks.Interop.swcommands.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SolidWorks.Interop.swconst">
+      <HintPath>..\packages\SolidWorks.Interop.swconst.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,17 +67,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="View\PlaginWindowView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Model\BuilderFigure\SaveDetail.cs" />
+    <Compile Include="Model\MyException\CellDeepExtrusionException.cs" />
+    <Compile Include="Model\MyException\CellFormatException.cs" />
+    <Compile Include="Model\MyException\CellOutOfRangeException.cs" />
+    <Compile Include="Model\BuilderFigure\CylinderModel.cs" />
+    <Compile Include="Model\BuilderFigure\ExtrusionModel.cs" />
+    <Compile Include="Model\BuilderFigure\IBuildFigureModel.cs" />
+    <Compile Include="Model\InspectionParametrModel.cs" />
+    <Compile Include="Model\InspectionParametrsForBuildEndHeadModel.cs" />
+    <Compile Include="Model\BuilderFigure\NewFileSW_Model.cs" />
+    <Compile Include="Model\BuilderFigure\EndHeadFigureModel.cs" />
+    <Compile Include="Model\MyException\CellRadiusException.cs" />
+    <Compile Include="Model\MyException\CellWallThicknessException.cs" />
+    <Compile Include="Model\OpenOrCloseSWModel.cs" />
+    <Compile Include="Model\BuilderFigure\RoundingModel.cs" />
+    <Compile Include="Model\BuildEndHeadFigure.cs" />
+    <Compile Include="ViewModel\InputParametrs.cs" />
+    <Compile Include="ViewModel\SaveDialog.cs" />
+    <Compile Include="ViewModel\ParametrRule.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="View\PlaginWindowView.xaml.cs">
+      <DependentUpon>PlaginWindowView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -96,8 +128,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
+    <Resource Include="drawing\222.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
